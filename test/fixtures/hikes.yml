@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  trail: MyString
+  scheduled_for: 2021-11-01 21:13:13
+
+two:
+  user: two
+  trail: MyString
+  scheduled_for: 2021-11-01 21:13:13
