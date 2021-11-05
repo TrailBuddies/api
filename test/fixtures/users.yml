@@ -2,14 +2,10 @@
 
 one:
   username: MyString
-  password_hash: MyString
+  password: MyString
   email: MyString
-  location_lat: 
-  location_lng: 
 
 two:
   username: MyString
-  password_hash: MyString
+  password: MyString
   email: MyString
-  location_lat: 
-  location_lng: 

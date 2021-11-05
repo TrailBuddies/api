@@ -10,29 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_04_183307) do
+ActiveRecord::Schema.define(version: 2021_11_05_141854) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "hikes", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "trail", null: false
-    t.datetime "scheduled_for", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_hikes_on_user_id"
-  end
-
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "username", null: false
+    t.string "password", null: false
     t.string "email", null: false
-    t.float "location_lat"
-    t.float "location_lng"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "password", null: false
   end
 
-  add_foreign_key "hikes", "users"
 end
