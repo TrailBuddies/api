@@ -5,5 +5,5 @@ User.create(
   password: BCrypt::Password.create(ENV['PASSWORD']),
   email: ENV['EMAIL'],
   admin: true,
-  verified: true,
+  verified: 'complete',
 )
