@@ -1,4 +1,6 @@
 class Api::V1::UsersController < ApplicationController
+  before_action :authenticate_user, only: [:me, :index, :show, :destroy]
+
   def me
     render json: current_user
   end
