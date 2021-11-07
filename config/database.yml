@@ -2,9 +2,9 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: doadmin
-  password: <%= ENV['API_DATABASE_PASSWORD'] %>
-  host: <%= ENV['API_HOST'] %>
+  username: <%= ENV['API_DB_USER'] %>
+  password: <%= ENV['API_DB_PASSWORD'] %>
+  host: <%= ENV['API_DB_HOST'] %>
   port: 25060
 
 development:
