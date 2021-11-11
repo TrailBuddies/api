@@ -1,7 +1,24 @@
 class ApplicationController < ActionController::API
-  def authenticate_user
-    token = request.headers['HTTP_AUTHORIZATION']
-    if !token || !is_valid_token(token)
+  before_action :user_checks
+
+  def user_checks
+    @token = get_current_token
+    @user = get_current_user
+  end
+
+  def get_current_user
+    if @token
+      decoded_token = JWT.decode(@token, Rails.configuration.x.oauth.jwt_secret, true)
+      puts decoded_token
+    end
+  end
+
+  def get_current_token
+    request.headers['Authorization']
+  end
+
+  def require_token
+    if !@token || !is_valid_token(token)
       render json: { error: 'No valid token provided in the \'Authorization\' header' }, status: :forbidden
     end
   end
@@ -14,7 +31,7 @@ class ApplicationController < ActionController::API
 
     token.gsub!('Bearer ','')
     begin
-      decoded_token = JWT.decode token, Rails.configuration.x.oauth.jwt_secret, true
+      JWT.decode(token, Rails.configuration.x.oauth.jwt_secret, true)
       return true
     rescue JWT::DecodeError
       Rails.logger.warn 'Error decoding the JWT: ' + e.to_s

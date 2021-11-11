@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'users/me', to: 'users#me'
+      post 'users/login', to: 'users#login'
+      post 'users/logout', to: 'users#logout'
+      post 'users/register', to: 'users#register'
+
       resources :users
       resources :hikes
     end
