@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
 
   def get_current_user
     if @token
-      decoded_token = JWT.decode(@token, Rails.configuration.x.oauth.jwt_secret, true)
+      decoded_token = JWT.decode(@token, OpenSSL::PKey::RSA::new(File.read('config/rsa/public.pem'), ENV['PASSPHRASE']), true, { algorithm: 'RS256' })
       puts decoded_token
     end
   end
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::API
 
     token.gsub!('Bearer ','')
     begin
-      JWT.decode(token, Rails.configuration.x.oauth.jwt_secret, true)
+      JWT.decode(token, OpenSSL::PKey::RSA::new(File.read('config/rsa/public.pem'), ENV['PASSPHRASE']), true, { algorithm: 'RS256' })
       return true
     rescue JWT::DecodeError
       Rails.logger.warn 'Error decoding the JWT: ' + e.to_s

@@ -10,7 +10,8 @@ class Api::V1::UsersController < ApplicationController
   def login
     user = User.find_by(email: login_user_params[:email])
     if user && user.authenticate(login_user_params[:password])
-      render json: user
+      token = user.generate_token(true)
+      render json: { user: user, auth: token }
     else
       render json: { error: 'Invalid email password combination' }, status: 400
     end
@@ -35,7 +36,6 @@ class Api::V1::UsersController < ApplicationController
   # GET /users/:id
   def show
     user = User.find(params[:id])
-    token = JWT.encode({ user_id: user.id }, Rails.configuration.x.oauth.jwt_secret, 'HS256')
     render json: user
   end
 
