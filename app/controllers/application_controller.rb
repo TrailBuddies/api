@@ -9,16 +9,25 @@ class ApplicationController < ActionController::API
   def get_current_user
     if @token
       decoded_token = JWT.decode(@token, OpenSSL::PKey::RSA::new(File.read('config/rsa/public.pem'), ENV['PASSPHRASE']), true, { algorithm: 'RS256' })
-      puts decoded_token
+      subject = decoded_token[0]['sub']
+
+      token = Token.find_by(user_id: subject)
+      user = User.find_by(id: token.user_id)
+
+      if !token || !user || subject != user.id
+        render json: { error: "Invalid token" }, status: :unauthorized
+      else
+        return user
+      end
     end
   end
 
   def get_current_token
-    request.headers['Authorization']
+    request.headers['Authorization'].sub!('Bearer ', '') if request.headers['Authorization']
   end
 
   def require_token
-    if !@token || !is_valid_token(token)
+    if !@token || !is_valid_token(@token)
       render json: { error: 'No valid token provided in the \'Authorization\' header' }, status: :forbidden
     end
   end
@@ -29,7 +38,7 @@ class ApplicationController < ActionController::API
       return false
     end
 
-    token.gsub!('Bearer ','')
+    token.sub!('Bearer ','')
     begin
       JWT.decode(token, OpenSSL::PKey::RSA::new(File.read('config/rsa/public.pem'), ENV['PASSPHRASE']), true, { algorithm: 'RS256' })
       return true
