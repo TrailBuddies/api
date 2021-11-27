@@ -1,4 +1,16 @@
-# README
+# Trails_Buddies / **api**
+
+##### Pre-Development
+You will need to generate a private/public keypair. On linux the commands would be: (in the project root)
+```bash
+$ rm -rf config/rsa/*.pem
+$ ssh-keygen -o -f config/rsa/key -N $PASSPHRASE -t rsa -b 2048 -m pem
+$ mv config/rsa/key config/rsa/private.pem
+$ mv config/rsa/key.pub config/rsa/public.pem
+```
+
+These commands are saved in the `bin/keygen` file
+
 
 ##### Required Environment Variables
 ```

@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+if [[ -z "${PASSPHRASE}" ]]; then
+  echo "[fatal] PASSPHRASE is not set"
+  exit 1
+fi
+
+rm -rf config/rsa/*.pem
+
+ssh-keygen -o -f config/rsa/key -N $PASSPHRASE -t rsa -b 2048 -m pem
+
+mv config/rsa/key config/rsa/private.pem
+mv config/rsa/key.pub config/rsa/public.pem
