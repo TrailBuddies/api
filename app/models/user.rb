@@ -24,14 +24,17 @@ class User < ApplicationRecord
       self.token.save
       puts t == self.token.token
     elsif self.token.nil?
-      puts 'doesnt exist'
       self.token = Token.new(
         token: JWT.encode(
-            { user_id: self.id },
-            OpenSSL::PKey::RSA.new(File.read('config/rsa/private.pem'), ENV['PASSPHRASE']),
-            'RS256'
-          ),
-          user_id: self.id
+          {
+            iss: 'probably digitalocean or some shit',
+            iat: Time.now.to_i,
+            sub: self.id
+          },
+          OpenSSL::PKey::RSA.new(File.read('config/rsa/private.pem'), ENV['PASSPHRASE']),
+          'RS256'
+        ),
+        user_id: self.id
       )
       self.token.save
     end
