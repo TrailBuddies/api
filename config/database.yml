@@ -5,7 +5,7 @@ default: &default
   username: <%= ENV['API_DB_USER'] %>
   password: <%= ENV['API_DB_PASSWORD'] %>
   host: <%= ENV['API_DB_HOST'] %>
-  port: 25060
+  port: 5432
 
 development:
   <<: *default
