@@ -25,7 +25,14 @@ class User < ApplicationRecord
       puts t == self.token.token
     elsif self.token.nil?
       puts 'doesnt exist'
-      self.token = Token.new(token: JWT.encode({ user_id: self.id }, Rails.application.secret_key_base, 'RS256'), user_id: self.id)
+      self.token = Token.new(
+        token: JWT.encode(
+            { user_id: self.id },
+            OpenSSL::PKey::RSA.new(File.read('config/rsa/private.pem'), ENV['PASSPHRASE']),
+            'RS256'
+          ),
+          user_id: self.id
+      )
       self.token.save
     end
 
