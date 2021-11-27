@@ -8,16 +8,24 @@ class ApplicationController < ActionController::API
 
   def get_current_user
     if @token
-      decoded_token = JWT.decode(@token, OpenSSL::PKey::RSA::new(File.read('config/rsa/public.pem'), ENV['PASSPHRASE']), true, { algorithm: 'RS256' })
-      subject = decoded_token[0]['sub']
+      begin
+        decoded_token = JWT.decode(@token, OpenSSL::PKey::RSA::new(File.read('config/rsa/public.pem'), ENV['PASSPHRASE']), true, { algorithm: 'RS256' })
+      rescue JWT::DecodeError
+      end
 
-      token = Token.find_by(user_id: subject)
-      user = User.find_by(id: token.user_id)
-
-      if !token || !user || subject != user.id
-        render json: { error: "Invalid token" }, status: :unauthorized
+      if decoded_token == nil
+        render json: { error: 'Invalid token' }, status: :unauthorized
       else
-        return user
+        subject = decoded_token[0]['sub']
+
+        token = Token.find_by(user_id: subject)
+        user = User.find_by(id: token.user_id)
+
+        if !token || !user || subject != user.id
+          render json: { error: "Invalid token" }, status: :unauthorized
+        else
+          return user
+        end
       end
     end
   end
