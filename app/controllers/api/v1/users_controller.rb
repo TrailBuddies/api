@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :require_token, only: [:me]
+  before_action :require_token, only: [:me, :destroy]
 
   # GET /users/me
   def me
@@ -24,7 +24,27 @@ class Api::V1::UsersController < ApplicationController
 
   # POST users/register
   def register
-    
+    email = register_user_params[:email]
+    username = register_user_params[:username]
+    unhashed_password = register_user_params[:password]
+
+    if email.blank? || username.blank? || unhashed_password.blank?
+      return render json: { error: 'One or more fields are blank' }, status: 400
+    elsif User.find_by(email: email)
+      return render json: { error: 'Email already in use' }, status: 400
+    elsif User.find_by(username: username)
+      return render json: { error: 'Username already in use' }, status: 400
+    end
+
+    password = BCrypt::Password.create(unhashed_password)
+
+    begin
+      user = User.create(email: email, username: username, password: password)
+      token = user.generate_token(true)
+      render json: { user: user, auth: token }
+    rescue => exception
+      render json: { error: exception.message }, status: 400
+    end
   end
 
   # GET /users
@@ -37,16 +57,6 @@ class Api::V1::UsersController < ApplicationController
   def show
     user = User.find(params[:id])
     render json: user
-  end
-
-  # POST /users
-  def create
-    user = User.new(create_user_params)
-    if user.save
-      render json: user
-    else
-      render json: { error: 'Failed to create user' }, status: 400
-    end
   end
 
   # DELETE /users/:id
@@ -62,7 +72,7 @@ class Api::V1::UsersController < ApplicationController
 
   private
 
-  def create_user_params
+  def register_user_params
     params.require(:user).permit(:username, :email, :password)
   end
 

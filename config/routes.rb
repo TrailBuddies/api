@@ -8,7 +8,6 @@ Rails.application.routes.draw do
       post 'users/register', to: 'users#register'
 
       resources :users
-      resources :hikes
     end
   end
 end
