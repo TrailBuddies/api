@@ -6,6 +6,10 @@ class User < ApplicationRecord
     return BCrypt::Password.new(self.password) == password
   end
 
+  def remove_token
+    self.token.destroy
+  end
+
   def generate_token (overwrite = false)
     if !self.token.nil? && overwrite
       puts 'exists and overwrite'

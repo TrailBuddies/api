@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :require_token, only: [:me, :destroy]
+  before_action :require_token, only: [:me, :destroy, :logout]
 
   # GET /users/me
   def me
@@ -19,7 +19,8 @@ class Api::V1::UsersController < ApplicationController
 
   # POST /users/logout
   def logout
-
+    @user.remove_token
+    render json: { success: true }, status: 200
   end
 
   # POST users/register
