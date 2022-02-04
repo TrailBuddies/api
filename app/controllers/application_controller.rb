@@ -19,7 +19,9 @@ class ApplicationController < ActionController::API
         subject = decoded_token[0]['sub']
 
         token = Token.find_by(user_id: subject)
-        user = User.find_by(id: token.user_id)
+        user = if !token.nil?
+          User.find_by(id: token.user_id)
+        end
 
         if !token || !user || subject != user.id
           render json: { error: "Invalid token" }, status: :unauthorized
