@@ -20,7 +20,7 @@ class ApplicationController < ActionController::API
 
         token = Token.find_by(user_id: subject)
         user = if !token.nil?
-          User.find_by(id: token.user_id)
+          User.find(token.user_id)
         end
 
         if !token || !user || subject != user.id
