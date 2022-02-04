@@ -60,7 +60,7 @@ class Api::V1::UsersController < ApplicationController
     user = if params[:id].include?('@')
       User.find_by(email: params[:id])
     else
-      User.find(params[:id])
+      User.find_by_id(params[:id]) || User.find_by(username: params[:id])
     end
 
     if user
