@@ -42,6 +42,13 @@ class ApplicationController < ActionController::API
     end
   end
 
+  def admin_only
+    require_token
+    if !@user.admin
+      render json: { error: 'Only admins can do that' }, status: :unauthorized
+    end
+  end
+
   private
   def is_valid_token(token)
     unless token

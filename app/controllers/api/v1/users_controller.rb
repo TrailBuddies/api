@@ -1,5 +1,6 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :require_token, only: [:me, :destroy, :logout]
+  before_action :require_token, only: [:me, :logout]
+  before_action :admin_only, only: [:index, :show, :destroy]
 
   # GET /users/me
   def me
@@ -23,7 +24,7 @@ class Api::V1::UsersController < ApplicationController
     render json: { success: true }, status: 200
   end
 
-  # POST users/register
+  # POST /users/register
   def register
     email = register_user_params[:email]
     username = register_user_params[:username]
