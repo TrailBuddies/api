@@ -7,6 +7,8 @@ fi
 
 rm -rf config/rsa/*.pem
 
+mkdir -p config/rsa
+
 ssh-keygen -o -f config/rsa/key -N $PASSPHRASE -t rsa -b 2048 -m pem
 
 mv config/rsa/key config/rsa/private.pem
