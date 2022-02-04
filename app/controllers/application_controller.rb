@@ -65,7 +65,11 @@ class ApplicationController < ActionController::API
     false
   end
 
-  rescue_from 'ActionController::ParameterMissing' do |exception|
+  rescue_from ActionController::ParameterMissing do |exception|
     render json: { errors: exception.to_s }.to_json, status: 422
-  end  
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    render json: { errors: exception.to_s }.to_json, status: 404
+  end
 end
