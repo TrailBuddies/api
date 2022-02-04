@@ -57,8 +57,17 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users/:id
   def show
-    user = User.find(params[:id])
-    render json: user
+    user = if params[:id].include?('@')
+      User.find_by(email: params[:id])
+    else
+      User.find(params[:id])
+    end
+
+    if user
+      render json: user
+    else
+      render json: { error: 'User does not exist' }, status: 404
+    end
   end
 
   # DELETE /users/:id
@@ -68,7 +77,7 @@ class Api::V1::UsersController < ApplicationController
       user.destroy
       render json: { success: true }, status: 200
     else
-      render json: { error: 'User does not exist' }, status: 400
+      render json: { error: 'User does not exist' }, status: 404
     end
   end
 
