@@ -12,9 +12,6 @@ class User < ApplicationRecord
 
   def generate_token (overwrite = false)
     if !self.token.nil? && overwrite
-      puts 'exists and overwrite'
-      t = self.token.token
-
       self.token.token = JWT.encode(
         {
           iss: 'probably digitalocean or some shit',
@@ -24,9 +21,7 @@ class User < ApplicationRecord
         OpenSSL::PKey::RSA.new(File.read('config/rsa/private.pem'), ENV['PASSPHRASE']),
         'RS256'
       )
-
       self.token.save
-      puts t == self.token.token
     elsif self.token.nil?
       self.token = Token.new(
         token: JWT.encode(
