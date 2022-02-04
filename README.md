@@ -4,9 +4,18 @@
 You will need to generate a private/public keypair. On linux the commands would be: (in the project root)
 ```bash
 $ rm -rf config/rsa/*.pem
+$ mkdir -p config/rsa
 $ ssh-keygen -o -f config/rsa/key -N $PASSPHRASE -t rsa -b 2048 -m pem
 $ mv config/rsa/key config/rsa/private.pem
 $ mv config/rsa/key.pub config/rsa/public.pem
+```
+or in a one command:
+```bash
+rm -rf config/rsa/*.pem \
+mkdir -p config/rsa \
+ssh-keygen -o -f config/rsa/key -N $PASSPHRASE -t rsa -b 2048 -m pem \
+mv config/rsa/key config/rsa/private.pem \
+mv config/rsa/key.pub config/rsa/public.pem
 ```
 
 These commands are saved in the `bin/keygen` file
