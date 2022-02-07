@@ -31,8 +31,8 @@ class Api::V1::HikeEventsController < ApplicationController
     end
 
     difficulty = create_params[:difficulty].to_i
-    if !difficulty
-      render json: { error: 'Invalid \'difficulty\' param. It failed to parse as an integer or it was 0.' }, status: 400 and return
+    if !difficulty || difficulty < 1 || difficulty > 10
+      render json: { error: 'Invalid \'difficulty\' param. It failed to parse as an integer or it was out of range (1 <= x <= 10).' }, status: 400 and return
     end
 
     render json: { done: true }
