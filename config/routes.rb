@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resource :hike_events do
         get '/', to: 'hike_events#index'
+        get '/:id', to: 'hike_events#show'
+        post '/create', to: 'hike_events#create'
+        delete '/:id', to: 'hike_events#destroy'
       end
 
       resources :users do

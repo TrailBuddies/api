@@ -14,24 +14,49 @@ class Api::V1::HikeEventsController < ApplicationController
   end
 
   def create
-    safe_params = safe_create_params
-    if !safe_params
+    params = safe_params(create_params)
+    if !params
       return
     end
 
     render json: HikeEvent.create(safe_params.merge(user_id: @user.id))
   end
 
+  def destroy
+    event = HikeEvent.find(params[:id])
+    if event.user_id != @user.id && !@user.admin
+      render json: { error: 'You do not own that event. So you obviously can\'t delete it dumbass' }, status: 403 and return
+    end
+
+    event.destroy
+    render json: { success: true }, status: 200
+  end
+
+  def update
+    event = HikeEvent.find(params[:id])
+    if event.user_id != @user.id && !@user.admin
+      render json: { error: 'You do not own that event. So you obviously can\'t update it' }, status: 403
+    end
+
+    params = safe_params(update_params)
+    if !params
+      return
+    end
+
+    event.update(params)
+    render json: event.save, status: 200
+  end
+
   private
 
-  def safe_create_params
+  def safe_params (p)
     duration = parse_duration
     if !duration
       return
     end
 
-    lat = create_params[:lat].to_f
-    lng = create_params[:lng].to_f
+    lat = p[:lat].to_f
+    lng = p[:lng].to_f
 
     if !lat || !lng
       render json: { error: 'Invalid \'lat\' and \'lng\' params. They failed to parse as floating point numbers' }, status: 400 and return
@@ -41,12 +66,27 @@ class Api::V1::HikeEventsController < ApplicationController
       render json: { error: 'Your latitude and/or longitude coordinates are not precise enough. At least 6 decimal places are required' }, status: 400 and return
     end
 
-    difficulty = create_params[:difficulty].to_i
+    difficulty = p[:difficulty].to_i
     if !difficulty || difficulty < 1 || difficulty > 10
       render json: { error: 'Invalid \'difficulty\' param. It failed to parse as an integer or it was out of range (1 <= x <= 10).' }, status: 400 and return
     end
 
-    return {title: create_params[:title], description: create_params[:description], duration: duration, lat: lat, lng: lng, difficulty: difficulty}
+    return { title: p[:title], description: p[:description], duration: duration, lat: lat, lng: lng, difficulty: difficulty }
+  end
+  
+  def create_params
+    params.require(:hike_event).permit(:title, :description, :duration, :lat, :lng, :difficulty).tap do |event|
+      event.require(:title)
+      event.require(:description)
+      event.require(:duration)
+      event.require(:lat)
+      event.require(:lng)
+      event.require(:difficulty)
+    end
+  end
+
+  def update_params
+    params.require(:hike_event).permit(:title, :description, :duration, :lat, :lng, :difficulty)
   end
 
   def parse_duration
@@ -70,17 +110,6 @@ class Api::V1::HikeEventsController < ApplicationController
       return (start..finish)
     else
       render json: { error: 'Invalid duration. duration must be in format: \'#<DateTime>..#<DateTime>\'' }, status: 400
-    end
-  end
-  
-  def create_params
-    params.require(:hike_event).permit(:title, :description, :duration, :lat, :lng, :difficulty).tap do |event|
-      event.require(:title)
-      event.require(:description)
-      event.require(:duration)
-      event.require(:lat)
-      event.require(:lng)
-      event.require(:difficulty)
     end
   end
 end
