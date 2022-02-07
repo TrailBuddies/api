@@ -14,6 +14,17 @@ class Api::V1::HikeEventsController < ApplicationController
   end
 
   def create
+    safe_params = safe_create_params
+    if !safe_params
+      return
+    end
+
+    render json: HikeEvent.create(safe_params.merge(user_id: @user.id))
+  end
+
+  private
+
+  def safe_create_params
     duration = parse_duration
     if !duration
       return
@@ -35,10 +46,8 @@ class Api::V1::HikeEventsController < ApplicationController
       render json: { error: 'Invalid \'difficulty\' param. It failed to parse as an integer or it was out of range (1 <= x <= 10).' }, status: 400 and return
     end
 
-    render json: { done: true }
+    return {title: create_params[:title], description: create_params[:description], duration: duration, lat: lat, lng: lng, difficulty: difficulty}
   end
-
-  private
 
   def parse_duration
     duration = create_params[:duration].split('..')
@@ -58,7 +67,7 @@ class Api::V1::HikeEventsController < ApplicationController
         render json: { error: "Start time '#{duration[0]}' is after finish time '#{duration[1]}'" }, status: 400 and return
       end
 
-      return [start, finish]
+      return (start..finish)
     else
       render json: { error: 'Invalid duration. duration must be in format: \'#<DateTime>..#<DateTime>\'' }, status: 400
     end
