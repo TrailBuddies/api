@@ -65,14 +65,13 @@ class Api::V1::HikeEventsController < ApplicationController
   end
   
   def create_params
-    params.require(:hike_event).permit(:title, :description, :duration, :lat, :lng, :difficulty, :image_url).tap do |event|
+    params.require(:hike_event).permit(:title, :description, :duration, :lat, :lng, :difficulty).tap do |event|
       event.require(:title)
       event.require(:description)
       event.require(:duration)
       event.require(:lat)
       event.require(:lng)
       event.require(:difficulty)
-      event.require(:image_url)
     end
   end
 end
