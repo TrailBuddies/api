@@ -39,10 +39,7 @@ class Api::V1::HikeEventsController < ApplicationController
     end
 
     defaults = {:title=>event.title, :description=>event.description, :duration=>event.duration, :lat=>event.lat, :lng=>event.lng, :difficulty=>event.difficulty}
-    params = safe_params(defaults.merge(update_params))
-    puts defaults
-    puts update_params
-    puts params
+    params = safe_params(defaults.merge(fix_params(update_params)))
     if !params
       return
     end
@@ -94,11 +91,34 @@ class Api::V1::HikeEventsController < ApplicationController
     params.require(:hike_event).permit(:title, :description, :duration, :lat, :lng, :difficulty)
   end
 
+  def fix_params (p)
+    fixed = {}
+    if p["title"]
+      fixed[:title] = p["title"]
+    end
+    if p["description"]
+      fixed[:description] = p["description"]
+    end
+    if p["duration"]
+      fixed[:duration] = p["duration"]
+    end
+    if p["lat"]
+      fixed[:lat] = p["lat"]
+    end
+    if p["lng"]
+      fixed[:lng] = p["lng"]
+    end
+    if p["difficulty"]
+      fixed[:difficulty] = p["difficulty"]
+    end
+    return fixed
+  end
+
   def parse_duration(p)
     if p[:duration].is_a?(Range)
       return p[:duration]
     end
-    
+
     duration = p[:duration].split('...')
     unless duration.length != 2
       start = Time.zone.parse(duration[0])
