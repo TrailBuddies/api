@@ -37,6 +37,11 @@ class Api::V1::HikeEventsController < ApplicationController
         render json: { error: "Invalid finish time '#{duration[1]}'" }, status: 400 and return
       end
 
+
+      if start > finish
+        render json: { error: "Start time '#{duration[0]}' is after finish time '#{duration[1]}'" }, status: 400 and return
+      end
+
       return [start, finish]
     else
       render json: { error: 'Invalid duration. duration must be in format: \'#<DateTime>..#<DateTime>\'' }, status: 400
