@@ -19,6 +19,22 @@ class Api::V1::HikeEventsController < ApplicationController
       return
     end
 
+    lat = create_params[:lat].to_f
+    lng = create_params[:lng].to_f
+
+    if !lat || !lng
+      render json: { error: 'Invalid \'lat\' and \'lng\' params. They failed to parse as floating point numbers' }, status: 400 and return
+    end
+
+    if lat.to_s.split('.').last.length < 6 || lng.to_s.split('.').last.length < 6
+      render json: { error: 'Your latitude and/or longitude coordinates are not precise enough. At least 6 decimal places are required' }, status: 400 and return
+    end
+
+    difficulty = create_params[:difficulty].to_i
+    if !difficulty
+      render json: { error: 'Invalid \'difficulty\' param. It failed to parse as an integer or it was 0.' }, status: 400 and return
+    end
+
     render json: { done: true }
   end
 
