@@ -1,7 +1,11 @@
 class User < ApplicationRecord
   has_one :token
-  has_many :hike_event
+  has_many :hike_events
   after_create :generate_token
+
+  def hike_events
+    HikeEvent.where(user_id: self.id)
+  end
 
   def authenticate (password)
     return BCrypt::Password.new(self.password) == password
