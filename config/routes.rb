@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
-      resource :hike_events
+      resource :hike_events do
+        get '/', to: 'hike_events#index'
+      end
+
       resources :users do
         get '/me', to: 'users#me', on: :collection
         post '/login', to: 'users#login', on: :collection
