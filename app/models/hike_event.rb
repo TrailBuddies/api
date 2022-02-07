@@ -1,0 +1,2 @@
+class HikeEvent < ApplicationRecord
+end

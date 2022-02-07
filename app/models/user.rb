@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one :token
+  has_many :hike_event
   after_create :generate_token
 
   def authenticate (password)
