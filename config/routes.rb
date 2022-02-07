@@ -2,13 +2,18 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
-      get 'users/me', to: 'users#me'
-      post 'users/login', to: 'users#login'
-      post 'users/register', to: 'users#register'
-      delete 'users/logout', to: 'users#logout'
-      get 'users/:id', to: 'users#show', :constraints  => { :id => /[0-z\.]+/ }
+      resource :hike_events
+      resources :users do
+        get '/me', to: 'users#me', on: :collection
+        post '/login', to: 'users#login', on: :collection
+        post '/register', to: 'users#register', on: :collection
+        delete '/logout', to: 'users#logout', on: :collection
+        get '/:id', to: 'users#show', :constraints  => { :id => /[0-z\.]+/ }, on: :collection
 
-      resources :users
+        resources :hike_events, only: [:mine] do
+          get '/mine', to: 'hike_events#mine', on: :collection
+        end
+      end
     end
   end
 end
