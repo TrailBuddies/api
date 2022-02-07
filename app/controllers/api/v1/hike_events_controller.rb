@@ -38,7 +38,8 @@ class Api::V1::HikeEventsController < ApplicationController
       render json: { error: 'You do not own that event. So you obviously can\'t update it' }, status: 403
     end
 
-    params = safe_params(update_params)
+    defaults = {title: event.title, description: event.description, duration: event.duration, lat: event.lat, lng: event.lng, difficulty: event.difficulty}
+    params = safe_params(defaults.merge(update_params))
     if !params
       return
     end
