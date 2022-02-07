@@ -14,7 +14,22 @@ class Api::V1::HikeEventsController < ApplicationController
   end
 
   def create
-    render json: HikeEvent.create(create_params)
+    duration = create_params[:duration].split('..')
+    unless duration.length != 2
+      start = Time.zone.parse(duration[0])
+      if !start
+        return render json: { error: "Invalid start time '#{duration[0]}'" }, status: 400
+      end
+
+      finish = Time.zone.parse(duration[1])
+      if !finish
+        return render json: { error: "Invalid finish time '#{duration[1]}'" }, status: 400
+      end
+
+      render json: { done: true } #HikeEvent.create(create_params)
+    else
+      render json: { error: 'Invalid duration. duration must be in format: \'#<DateTime>..#<DateTime>\'' }, status: 400
+    end
   end
 
   private
