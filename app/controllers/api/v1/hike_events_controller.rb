@@ -38,20 +38,24 @@ class Api::V1::HikeEventsController < ApplicationController
       render json: { error: 'You do not own that event. So you obviously can\'t update it' }, status: 403
     end
 
-    defaults = {title: event.title, description: event.description, duration: event.duration, lat: event.lat, lng: event.lng, difficulty: event.difficulty}
+    defaults = {:title=>event.title, :description=>event.description, :duration=>event.duration, :lat=>event.lat, :lng=>event.lng, :difficulty=>event.difficulty}
     params = safe_params(defaults.merge(update_params))
+    puts defaults
+    puts update_params
+    puts params
     if !params
       return
     end
 
+
     event.update(params)
-    render json: event.save, status: 200
+    render json: event, status: 200
   end
 
   private
 
   def safe_params (p)
-    duration = parse_duration
+    duration = parse_duration(p)
     if !duration
       return
     end
@@ -90,8 +94,12 @@ class Api::V1::HikeEventsController < ApplicationController
     params.require(:hike_event).permit(:title, :description, :duration, :lat, :lng, :difficulty)
   end
 
-  def parse_duration
-    duration = create_params[:duration].split('..')
+  def parse_duration(p)
+    if p[:duration].is_a?(Range)
+      return p[:duration]
+    end
+    
+    duration = p[:duration].split('...')
     unless duration.length != 2
       start = Time.zone.parse(duration[0])
       if !start
@@ -108,9 +116,9 @@ class Api::V1::HikeEventsController < ApplicationController
         render json: { error: "Start time '#{duration[0]}' is after finish time '#{duration[1]}'" }, status: 400 and return
       end
 
-      return (start..finish)
+      return (start...finish)
     else
-      render json: { error: 'Invalid duration. duration must be in format: \'#<DateTime>..#<DateTime>\'' }, status: 400
+      render json: { error: 'Invalid duration. duration must be in format: \'#<DateTime>...#<DateTime>\'' }, status: 400
     end
   end
 end
