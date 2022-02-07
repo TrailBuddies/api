@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         get '/:id', to: 'hike_events#show'
         post '/create', to: 'hike_events#create'
         delete '/:id', to: 'hike_events#destroy'
+        put '/:id', to: 'hike_events#update'
       end
 
       resources :users do
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
         get '/:id', to: 'users#show', :constraints  => { :id => /[0-z\.]+/ }, on: :collection
 
         resources :hike_events, only: [:mine] do
-          get '/mine', to: 'hike_events#mine', on: :collection
+          get '/', to: 'hike_events#mine', on: :collection
         end
       end
     end
