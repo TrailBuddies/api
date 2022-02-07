@@ -30,9 +30,7 @@ class Api::V1::UsersController < ApplicationController
     username = register_user_params[:username]
     unhashed_password = register_user_params[:password]
 
-    if email.blank? || username.blank? || unhashed_password.blank?
-      return render json: { error: 'One or more fields are blank' }, status: 400
-    elsif User.find_by(email: email)
+    if User.find_by(email: email)
       return render json: { error: 'Email already in use' }, status: 400
     elsif User.find_by(username: username)
       return render json: { error: 'Username already in use' }, status: 400
@@ -84,10 +82,17 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def register_user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email, :password).tap do |p|
+      p.require(:username)
+      p.require(:email)
+      p.require(:password)
+    end
   end
 
   def login_user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password).tap do |p| 
+      p.require(:email)
+      p.require(:password)
+    end
   end
 end
