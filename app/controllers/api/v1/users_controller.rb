@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   before_action :require_token, only: [:me, :logout]
-  before_action :admin_only, only: [:index, :show, :destroy]
+  before_action :admin_only, only: [:index, :destroy]
 
   # GET /users/me
   def me
