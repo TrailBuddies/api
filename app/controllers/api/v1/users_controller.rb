@@ -62,7 +62,11 @@ class Api::V1::UsersController < ApplicationController
     end
 
     if user
-      render json: user
+      if @user.nil? || !@user.admin
+        render json: user.as_json(only: [:id, :username, :created_at]), status: 200
+      else
+        render json: user
+      end
     else
       render json: { error: 'User does not exist' }, status: 404
     end
