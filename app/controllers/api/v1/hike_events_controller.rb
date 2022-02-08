@@ -1,7 +1,7 @@
 class Api::V1::HikeEventsController < ApplicationController
   before_action :require_token, only: [:mine, :create, :destroy, :update]
 
-  def mine
+  def current_user
     render json: @user.hike_events
   end
 
