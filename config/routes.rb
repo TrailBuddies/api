@@ -17,9 +17,8 @@ Rails.application.routes.draw do
         delete '/logout', to: 'users#logout', on: :collection
         get '/:id', to: 'users#show', :constraints  => { :id => /[0-z\.]+/ }, on: :collection
 
-        resources :hike_events, only: [:current_user] do
-          get '/', to: 'hike_events#current_user', on: :collection
-        end
+        get '/me/hike_events', to: 'hike_events#current_user', on: :collection
+        get '/:id/hike_events', to: 'hike_events#show_for_user', on: :collection
       end
     end
   end

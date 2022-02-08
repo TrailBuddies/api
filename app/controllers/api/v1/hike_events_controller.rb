@@ -5,6 +5,11 @@ class Api::V1::HikeEventsController < ApplicationController
     render json: @user.hike_events
   end
 
+  def show_for_user
+    user = User.find(params[:id])
+    render json: user.hike_events
+  end
+
   def index
     render json: HikeEvent.all
   end
