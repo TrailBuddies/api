@@ -23,8 +23,8 @@ class Api::V1::HikeEventsController < ApplicationController
     if !params
       return
     end
-
-    render json: HikeEvent.create(safe_params.merge(user_id: @user.id))
+    
+    render json: HikeEvent.create(params.merge(user_id: @user.id))
   end
 
   def destroy
@@ -58,6 +58,7 @@ class Api::V1::HikeEventsController < ApplicationController
 
   def safe_params (p)
     duration = parse_duration(p)
+    puts duration
     if !duration
       return
     end
@@ -143,7 +144,7 @@ class Api::V1::HikeEventsController < ApplicationController
 
       return (start...finish)
     else
-      render json: { error: 'Invalid duration. duration must be in format: \'#<DateTime>...#<DateTime>\'' }, status: 400
+      render json: { error: 'Invalid duration. duration must be in format: \'#<DateTime>...#<DateTime>\'' }, status: 400 and return
     end
   end
 end
