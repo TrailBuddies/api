@@ -27,6 +27,9 @@ export API_DB_HOST="< host >"
 # Rails seed user config
 export PASSWORD="< password >"
 export EMAIL="< email >"
+
+# Cloudinary
+export CLOUDINARY_SECRET="< cloudinary api secret >"
 ```
 
 This README would normally document whatever steps are necessary to get the
