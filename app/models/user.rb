@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one :token, dependent: :destroy
+  has_one_attached :avatar, dependent: :destroy
   has_many :hike_events, dependent: :destroy
   after_create :generate_token
 
