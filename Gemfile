@@ -45,3 +45,4 @@ gem 'jwt'
 gem 'rack-cors'
 
 gem 'cloudinary'
+gem 'httparty'
