@@ -30,6 +30,9 @@ export EMAIL="< email >"
 
 # Cloudinary
 export CLOUDINARY_SECRET="< cloudinary api secret >"
+
+# TomTom Maps API
+export TOMTOM_API_KEY="< tomtom api key >"
 ```
 
 This README would normally document whatever steps are necessary to get the
