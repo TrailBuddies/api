@@ -11,7 +11,7 @@ class Api::V1::HikeEventsController < ApplicationController
   end
 
   def index
-    render json: HikeEvent.all
+    render json: HikeEvent.all.order(created_at: :desc).map{ |e| e.as_json(methods: :image_url) }
   end
 
   def show
