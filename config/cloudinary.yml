@@ -1,0 +1,11 @@
+development: 
+  cloud_name: "dth4ew8m4"
+  api_key: "368396144617629"
+  api_secret: <%= ENV['CLOUDINARY_SECRET'] %>
+  secure: true
+
+production:
+  cloud_name: "dth4ew8m4"
+  api_key: "368396144617629"
+  api_secret: <%= ENV['CLOUDINARY_SECRET'] %>
+  secure: true
