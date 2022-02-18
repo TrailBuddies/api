@@ -24,7 +24,7 @@ class Api::V1::HikeEventsController < ApplicationController
       return
     end
     
-    render json: HikeEvent.create(params.merge(user_id: @user.id))
+    render json: HikeEvent.create(params.merge(user_id: @user.id)).as_json(methods: :image_url)
   end
 
   def destroy
