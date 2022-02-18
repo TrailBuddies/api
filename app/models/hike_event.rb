@@ -4,6 +4,7 @@ require 'tempfile'
 class HikeEvent < ApplicationRecord
   has_one_attached :image, dependent: :destroy
   before_create :generate_image
+  before_destroy :purge_image
 
   def generate_image
     res = HTTParty.get('https://api.tomtom.com/map/1/staticimage', query: {
@@ -28,5 +29,9 @@ class HikeEvent < ApplicationRecord
         self.image.attach(io: File.open(tmp.path), filename: 'location.png')
       end
     end
+  end
+
+  def purge_image
+    self.image.purge
   end
 end
