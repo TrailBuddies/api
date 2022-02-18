@@ -6,6 +6,10 @@ class HikeEvent < ApplicationRecord
   before_create :generate_image
   before_destroy :purge_image
 
+  def image_url
+    Cloudinary::Utils.cloudinary_url(self.image.key)
+  end
+
   def generate_image
     res = HTTParty.get('https://api.tomtom.com/map/1/staticimage', query: {
       key: ENV['TOMTOM_API_KEY'],

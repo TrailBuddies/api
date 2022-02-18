@@ -15,7 +15,7 @@ class Api::V1::HikeEventsController < ApplicationController
   end
 
   def show
-    render json: HikeEvent.find(params[:id])
+    render json: HikeEvent.find(params[:id]).as_json(methods: :image_url)
   end
 
   def create
