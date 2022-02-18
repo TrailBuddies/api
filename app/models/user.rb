@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_one :token
-  has_many :hike_events
+  has_one :token, dependent: :destroy
+  has_many :hike_events, dependent: :destroy
   after_create :generate_token
 
   def hike_events
