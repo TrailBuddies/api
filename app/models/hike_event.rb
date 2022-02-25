@@ -1,5 +1,6 @@
 require 'httparty'
 require 'tempfile'
+require 'rmagick'
 
 class HikeEvent < ApplicationRecord
   has_one_attached :image, dependent: :destroy
@@ -30,7 +31,10 @@ class HikeEvent < ApplicationRecord
           file.close;
         end
 
-        self.image.attach(io: File.open(tmp.path), filename: 'location.png')
+        withPin = Magick::Image.read(tmp.path).first.composite(Magick::Image.read('assets/pin.png').first, Magick::CenterGravity, Magick::OverCompositeOp)
+        withPin.write(tmp.path)
+
+        self.image.attach(io: File.open(tmp.path), filename: 'pin.png')
       end
     end
   end
