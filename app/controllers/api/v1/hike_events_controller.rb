@@ -58,7 +58,6 @@ class Api::V1::HikeEventsController < ApplicationController
 
   def safe_params (p)
     duration = parse_duration(p)
-    puts duration
     if !duration
       return
     end
