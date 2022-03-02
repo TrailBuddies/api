@@ -18,7 +18,7 @@ class ApplicationController < ActionController::API
       else
         subject = decoded_token[0]['sub']
 
-        token = Token.find_by(user_id: subject)
+        token = Token.find_by(user_id: subject.split('.')[0])
         user = if !token.nil?
           User.find(token.user_id)
         end

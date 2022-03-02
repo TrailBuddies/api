@@ -33,7 +33,7 @@ class User < ApplicationRecord
           {
             iss: 'probably digitalocean or some shit',
             iat: Time.now.to_i,
-            sub: self.id
+            sub: self.id + Time.now.to_s
           },
           OpenSSL::PKey::RSA.new(File.read('config/rsa/private.pem'), ENV['PASSPHRASE']),
           'RS256'
