@@ -8,6 +8,12 @@
   
   Find friends to hike with!
   
+  <sub>
+
+  ⚠️ This project is under development. If you want to help please read [this](https://trailbuddies.club/join) ⚠️
+
+  </sub>
+  
 </div>
 
 ---
