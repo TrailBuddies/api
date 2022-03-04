@@ -31,7 +31,14 @@ class Api::V1::HikeEventsController < ApplicationController
     event = HikeEvent.find(params[:id])
     if event.user_id == @user.id
       render json: { error: 'You can\'t join your own event' }, status: 400 and return
+    elsif event.users_unconfirmed.include?(@user.id)
+      render json: { error: 'You have already requested to join this event' }, status: 400 and return
+    elsif event.users.include?(@user.id)
+      render json: { error: 'You have already joined this event' }, status: 400 and return
     end
+
+    event.users_unconfirmed.push(@user.id)
+    event.save
 
     render json: event
   end
@@ -154,9 +161,5 @@ class Api::V1::HikeEventsController < ApplicationController
     else
       render json: { error: 'Invalid duration. duration must be in format: \'#<DateTime>...#<DateTime>\'' }, status: 400 and return
     end
-  end
-
-  def join_params
-    params.require(:hike_event).permit(:id)
   end
 end
