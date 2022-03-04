@@ -1,5 +1,5 @@
 class Api::V1::HikeEventsController < ApplicationController
-  before_action :require_token, only: [:current_user, :create, :destroy, :update]
+  before_action :require_token, only: [:current_user, :create, :destroy, :update, :join]
 
   def current_user
     render json: @user.hike_events
@@ -25,6 +25,22 @@ class Api::V1::HikeEventsController < ApplicationController
     end
     
     render json: HikeEvent.create(params.merge(user_id: @user.id)).as_json(methods: :image_url)
+  end
+
+  def join
+    event = HikeEvent.find(params[:id])
+    if event.user_id == @user.id
+      render json: { error: 'You can\'t join your own event' }, status: 400 and return
+    elsif event.users_unconfirmed.include?(@user.id)
+      render json: { error: 'You have already requested to join this event' }, status: 400 and return
+    elsif event.users.include?(@user.id)
+      render json: { error: 'You have already joined this event' }, status: 400 and return
+    end
+
+    event.users_unconfirmed.push(@user.id)
+    event.save
+
+    render json: event
   end
 
   def destroy
