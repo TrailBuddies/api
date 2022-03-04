@@ -1,5 +1,5 @@
 class Api::V1::HikeEventsController < ApplicationController
-  before_action :require_token, only: [:current_user, :create, :destroy, :update]
+  before_action :require_token, only: [:current_user, :create, :destroy, :update, :join]
 
   def current_user
     render json: @user.hike_events
@@ -25,6 +25,15 @@ class Api::V1::HikeEventsController < ApplicationController
     end
     
     render json: HikeEvent.create(params.merge(user_id: @user.id)).as_json(methods: :image_url)
+  end
+
+  def join
+    event = HikeEvent.find(params[:id])
+    if event.user_id == @user.id
+      render json: { error: 'You can\'t join your own event' }, status: 400 and return
+    end
+
+    render json: event
   end
 
   def destroy
@@ -145,5 +154,9 @@ class Api::V1::HikeEventsController < ApplicationController
     else
       render json: { error: 'Invalid duration. duration must be in format: \'#<DateTime>...#<DateTime>\'' }, status: 400 and return
     end
+  end
+
+  def join_params
+    params.require(:hike_event).permit(:id)
   end
 end
