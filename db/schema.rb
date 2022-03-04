@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_18_091434) do
+ActiveRecord::Schema.define(version: 2022_03_04_082944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 2022_02_18_091434) do
     t.uuid "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "event_join_requests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.boolean "confirmed", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.uuid "hike_events_id", null: false
+    t.uuid "users_id", null: false
+    t.index ["hike_events_id"], name: "index_event_join_requests_on_hike_events_id"
+    t.index ["users_id"], name: "index_event_join_requests_on_users_id"
   end
 
   create_table "hike_events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -79,5 +89,7 @@ ActiveRecord::Schema.define(version: 2022_02_18_091434) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "event_join_requests", "hike_events", column: "hike_events_id"
+  add_foreign_key "event_join_requests", "users", column: "users_id"
   add_foreign_key "hike_events", "users"
 end

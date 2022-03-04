@@ -1,0 +1,2 @@
+class EventJoinRequest < ApplicationRecord
+end
