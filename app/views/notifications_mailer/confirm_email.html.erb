@@ -1,12 +1,15 @@
 <h3>Hello <%= @username %>,</h3>
 
+<p>
+  Thank you for signing up with Trail Buddies. <br />
+  Here is a link so you can confirm your email address: <a href="<%= @link %>"><%= @link %></a>
+</p>
 
-Thank you for signing up with Trail Buddies.
-Here is a link so you can confirm your email address: <%= @link %>
-
-If you did not sign up then someone must have used your email address. If this is so, please send an email to help@trailbuddies.club.
+<p>
+  If you did not sign up then someone must have used your email address. If this is so, please send an email to help@trailbuddies.club.
+</p>
 
 <sub>
-  Kind regards
+  Kind regards <br />
   The TrailBuddies team
 </sub>

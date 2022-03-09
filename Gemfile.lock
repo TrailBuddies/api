@@ -175,7 +175,6 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rmagick (4.2.4)
-    securerandom (0.1.1)
     spring (4.0.0)
     strscan (3.0.1)
     thor (1.2.1)
@@ -207,7 +206,6 @@ DEPENDENCIES
   rack-cors (~> 1.1.1)
   rails (~> 7.0.1, >= 7.0.0)
   rmagick (~> 4.2.4)
-  securerandom
   spring (~> 4.0.0)
   tzinfo-data (~> 1.2021.5)
 
