@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_09_155308) do
+ActiveRecord::Schema.define(version: 2022_03_09_155646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -45,10 +45,11 @@ ActiveRecord::Schema.define(version: 2022_03_09_155308) do
   end
 
   create_table "confirm_email_keys", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "key"
+    t.string "key", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.uuid "users_id"
+    t.uuid "users_id", null: false
+    t.integer "expires_in_s", null: false
     t.index ["users_id"], name: "index_confirm_email_keys_on_users_id"
   end
 
