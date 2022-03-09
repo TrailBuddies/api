@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_09_155646) do
+ActiveRecord::Schema.define(version: 2022_03_09_160328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -48,9 +48,9 @@ ActiveRecord::Schema.define(version: 2022_03_09_155646) do
     t.string "key", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.uuid "users_id", null: false
+    t.uuid "user_id", null: false
     t.integer "expires_in_s", null: false
-    t.index ["users_id"], name: "index_confirm_email_keys_on_users_id"
+    t.index ["user_id"], name: "index_confirm_email_keys_on_user_id"
   end
 
   create_table "hike_events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -90,6 +90,6 @@ ActiveRecord::Schema.define(version: 2022_03_09_155646) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "confirm_email_keys", "users", column: "users_id"
+  add_foreign_key "confirm_email_keys", "users"
   add_foreign_key "hike_events", "users"
 end
