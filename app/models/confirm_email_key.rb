@@ -1,0 +1,2 @@
+class ConfirmEmailKey < ApplicationRecord
+end
