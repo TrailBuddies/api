@@ -30,4 +30,16 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "hello"
+  greeting:
+    informal:
+      long: 'Hey there'
+      short: 'Hi'
+    formal:
+      long: 'Greetings to you'
+      short: 'Hello'
+  notifications_mailer:
+    confirm_email:
+      subject: 'Remember to confirm your email for TrailBuddies!'
+  mailer:
+    default:
+      footer: 'This email was intended for %{addresses}'

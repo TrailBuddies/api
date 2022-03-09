@@ -13,7 +13,7 @@
     </main>
 
     <footer style="text-align:center; width:40%; margin:auto; border-top:solid 1px black; margin-top:60px; padding-top: 20px">
-      <span style="font-size:0.7rem">This email was intended for <b><%= @_message.to.join(',') %></b> and them only</span>
+      <span style="font-size:0.7rem"><%= t('mailer.default.footer', addresses: @_message.to.join(',')) %></span>
     </footer>
   </body>
 </html>

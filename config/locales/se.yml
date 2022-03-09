@@ -1,2 +1,14 @@
 se:
-  hello: "hej"
+  greeting:
+    informal:
+      long: 'Hej där'
+      short: 'Hej'
+    formal:
+      long: 'Hälsningar till dig'
+      short: 'Hallå'
+  notifications_mailer:
+    confirm_email:
+      subject: 'Kom ihåg att bekräfta din e-post för TrailBuddies!'
+  mailer:
+    default:
+      footer: 'Detta e-postmeddelande var avsett för %{addresses}'

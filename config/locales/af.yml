@@ -1,2 +1,14 @@
 af:
-  hello: "hallo"
+  greeting:
+    informal:
+      long: 'Haai daar'
+      short: 'Haai'
+    formal:
+      long: 'Groete aan jou'
+      short: 'Hallo'
+  notifications_mailer:
+    confirm_email:
+      subject: 'Onthou om jou e-pos vir TrailBuddies to bevestig'
+  mailer:
+    default:
+      footer: 'Hierdie e-pos was vir %{addresses} bedoel'
