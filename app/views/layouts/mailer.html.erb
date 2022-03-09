@@ -7,13 +7,13 @@
     </style>
   </head>
 
-  <body>
+  <body style="font-family: sans-serif;">
     <main>
       <%= yield %>
     </main>
 
-    <footer style="text-align:center; width:100%">
-      <span style="font-size:0.7rem; font-weight: bold">This email was intended for <%= @from %></span>
+    <footer style="text-align:center; width:40%; margin:auto; border-top:solid 1px black">
+      <span style="font-size:0.7rem">This email was intended for <b><%= @_message.to.join(',') %></b> and them only</span>
     </footer>
   </body>
 </html>
