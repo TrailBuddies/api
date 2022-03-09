@@ -8,6 +8,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer style="text-align:center; width:100%">
+      <span style="font-size:0.7rem; font-weight: bold">This email was intended for <%= @from %></span>
+    </footer>
   </body>
 </html>
