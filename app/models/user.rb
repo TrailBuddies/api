@@ -1,7 +1,10 @@
+require 'securerandom'
+
 class User < ApplicationRecord
   has_one :token, dependent: :destroy
+  has_one :confirm_email_key, dependent: :destroy
   has_many :hike_events, dependent: :destroy
-  after_create :generate_token
+  after_create [:generate_token, :create_confirm_email_key]
 
   def hike_events
     HikeEvent.where(user_id: self.id)
@@ -44,5 +47,20 @@ class User < ApplicationRecord
     end
 
     return self.token
+  end
+
+  def create_confirm_email_key
+    start = SecureRandom.hex(10)
+    middle = self.id
+    finish = SecureRandom.hex(10)
+    new_key = "#{start}.#{middle}.#{finish}"
+
+    if self.confirm_email_key.nil?
+      self.confirm_email_key = ConfirmEmailKey.create(key: new_key, user_id: self.id)
+    else
+      self.confirm_email_key.key = new_key
+    end
+
+    self.confirm_email_key.save
   end
 end

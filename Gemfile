@@ -47,3 +47,5 @@ gem 'rack-cors', '~> 1.1.1'
 gem 'rmagick', '~> 4.2.4'
 gem 'cloudinary', '~> 1.22'
 gem 'httparty', '~> 0.20'
+
+gem 'securerandom'
