@@ -8,7 +8,7 @@ class NotificationsMailer < ApplicationMailer
   def confirm_email(user)
     @link = user.confirm_email_key.url
     @user = user
-    mail(to: user.email)
+    mail(to: user.email, subject: I18n.t('Hey there! Remember to confirm your email for TrailBuddies!'))
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
