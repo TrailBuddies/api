@@ -50,7 +50,7 @@ class User < ApplicationRecord
   end
 
   def create_confirm_email_key
-    new_key = SecureRandom.base64(124)
+    new_key = SecureRandom.base64(24)
 
     if self.confirm_email_key.nil?
       self.confirm_email_key = ConfirmEmailKey.create(key: new_key, user_id: self.id, expires_in_s: 2.days.to_i)
