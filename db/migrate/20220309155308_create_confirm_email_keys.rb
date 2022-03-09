@@ -5,5 +5,7 @@ class CreateConfirmEmailKeys < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+
+    add_reference :confirm_email_keys, :users, foreign_key: true, type: :uuid
   end
 end

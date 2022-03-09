@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_04_095547) do
+ActiveRecord::Schema.define(version: 2022_03_09_155308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 2022_03_04_095547) do
     t.uuid "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "confirm_email_keys", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "key"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.uuid "users_id"
+    t.index ["users_id"], name: "index_confirm_email_keys_on_users_id"
   end
 
   create_table "hike_events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -81,5 +89,6 @@ ActiveRecord::Schema.define(version: 2022_03_04_095547) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "confirm_email_keys", "users", column: "users_id"
   add_foreign_key "hike_events", "users"
 end
