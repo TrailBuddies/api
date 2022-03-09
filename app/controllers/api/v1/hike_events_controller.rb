@@ -1,5 +1,5 @@
 class Api::V1::HikeEventsController < ApplicationController
-  before_action :require_token, only: [:current_user, :create, :destroy, :update, :join, :leave]
+  before_action :require_token, only: [:current_user, :create, :destroy, :update, :join, :leave, :confirm]
 
   def current_user
     render json: @user.hike_events
@@ -56,6 +56,23 @@ class Api::V1::HikeEventsController < ApplicationController
     
     event.save
     render json: { success: true }, status: 200 and return
+  end
+
+  def confirm
+    event = HikeEvent.find(params[:id])
+    user = User.find(params[:uid])
+    
+    if event.users_unconfirmed.include?(user.id)
+      event.users_unconfirmed.delete_at(event.users_unconfirmed.index(user.id))
+      event.users.push(user.id)
+      event.save
+
+      render json: { success: true }, status: 200
+    elsif event.users.include?(user.id)
+      render json: { error: 'This user is already confirmed for this event' }, status: 400 and return
+    else
+      render json: { error: 'This user has not requested to join this event. Wait for them to request before confirming them' }, status: 400 and return
+    end
   end
 
   def destroy

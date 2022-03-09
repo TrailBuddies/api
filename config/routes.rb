@@ -4,12 +4,13 @@ Rails.application.routes.draw do
     namespace :v1 do
       resource :hike_events do
         get '/', to: 'hike_events#index'
+        post '/create', to: 'hike_events#create'
+        get '/:id', to: 'hike_events#show'
+        put '/:id', to: 'hike_events#update'
+        delete '/:id', to: 'hike_events#destroy'
         post '/:id/join', to: 'hike_events#join'
         delete '/:id/leave', to: 'hike_events#leave'
-        get '/:id', to: 'hike_events#show'
-        post '/create', to: 'hike_events#create'
-        delete '/:id', to: 'hike_events#destroy'
-        put '/:id', to: 'hike_events#update'
+        post '/:id/confirm/:uid', to: 'hike_events#confirm'
       end
 
       resource :users do
