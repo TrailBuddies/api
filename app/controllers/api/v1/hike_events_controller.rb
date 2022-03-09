@@ -1,5 +1,5 @@
 class Api::V1::HikeEventsController < ApplicationController
-  before_action :require_token, only: [:current_user, :create, :destroy, :update, :join]
+  before_action :require_token, only: [:current_user, :create, :destroy, :update, :join, :leave]
 
   def current_user
     render json: @user.hike_events
@@ -41,6 +41,21 @@ class Api::V1::HikeEventsController < ApplicationController
     event.save
 
     render json: event
+  end
+
+  def leave
+    event = HikeEvent.find(params[:id])
+
+    if event.users_unconfirmed.include?(@user.id)
+      event.users_unconfirmed.delete_at(event.users_unconfirmed.index(@user.id))
+    elsif event.users.include?(@user.id)
+      event.users.delete_at(event.users.index(@user.id))
+    else
+      render json: { error: 'You haven\'t requested to join this event so you obviously cant\'t leave it dumbass' }, status: 400 and return
+    end
+    
+    event.save
+    render json: { success: true }, status: 200 and return
   end
 
   def destroy
