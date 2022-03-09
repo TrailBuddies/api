@@ -5,10 +5,9 @@ class NotificationsMailer < ApplicationMailer
   #
   #   en.notifications_mailer.confirm_email.subject
   #
-  def confirm_email
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def confirm_email(user)
+    @link = user.confirm_email_key.url
+    mail(to: user.email)
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
