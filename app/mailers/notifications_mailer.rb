@@ -7,6 +7,7 @@ class NotificationsMailer < ApplicationMailer
   #
   def confirm_email(user)
     @link = user.confirm_email_key.url
+    @user = user
     mail(to: user.email)
   end
 
