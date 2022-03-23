@@ -7,6 +7,16 @@ class Api::V1::UsersController < ApplicationController
     render json: @user
   end
 
+  # POST /users/confirm_email
+  def confirm_email
+    confirm_key = ConfirmEmailKey.find_by(key: confirm_email_params[:key])
+    if confirm_key
+
+    else
+      render json: { error: 'Invalid key' }, status: 400
+    end
+  end
+
   # POST /users/login
   def login
     user = User.find_by(email: login_user_params[:email])
@@ -97,6 +107,12 @@ class Api::V1::UsersController < ApplicationController
     params.require(:user).permit(:email, :password).tap do |p| 
       p.require(:email)
       p.require(:password)
+    end
+  end
+
+  def confirm_email_params
+    params.require(:confirm_email_key).permit(:key).tap do |p|
+      p.require(:key)
     end
   end
 end
