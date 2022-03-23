@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       end
 
       resource :users do
+        get '/', to: 'users#index', on: :collection
         get '/me', to: 'users#me', on: :collection
         post '/login', to: 'users#login', on: :collection
         post '/register', to: 'users#register', on: :collection
