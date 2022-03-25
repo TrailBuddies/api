@@ -1,10 +1,28 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :require_token, only: [:me, :logout]
+  before_action :require_token, only: [:me, :logout, :confirm_email]
   before_action :admin_only, only: [:index, :destroy]
 
   # GET /users/me
   def me
     render json: @user
+  end
+
+  # POST /users/confirm_email
+  def confirm_email
+    confirm = ConfirmEmailKey.find_by(key: confirm_email_params[:key])
+    if confirm.nil?
+      render json: { error: 'Invalid key' }, status: 400
+    else
+      user = User.find(confirm.user_id)
+
+      if user.id != confirm.user_id && !user.admin
+        render json: { error: 'You are unable to confirm using that key' }, status: 403
+      else
+        user.verified = 'confirmed'
+        user.save
+        render json: { success: true }, status: 200
+      end
+    end
   end
 
   # POST /users/login
@@ -97,6 +115,12 @@ class Api::V1::UsersController < ApplicationController
     params.require(:user).permit(:email, :password).tap do |p| 
       p.require(:email)
       p.require(:password)
+    end
+  end
+
+  def confirm_email_params
+    params.require(:confirm_email_key).permit(:key).tap do |p|
+      p.require(:key)
     end
   end
 end
