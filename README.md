@@ -24,7 +24,7 @@
 | :-- | :-- | :-: |
 | Ruby on Rails | `Rails 7.0.1` | [Installation guide](https://guides.rubyonrails.org/getting_started.html#creating-a-new-rails-project-installing-rails) |
 | RBEnv | `rbenv 1.2.0` | [Installation guide](https://github.com/rbenv/rbenv#installation) |
-| Ruby | `ruby 3.1.0p0 (2021-12-25 revision fb4df44d16)` | [Downloads](https://www.ruby-lang.org/en/downloads/) |
+| Ruby | `ruby 3.1.0p0 (2021-12-25 revision fb4df44d16)` | Install via RBEnv |
 | PostgreSQL | `postgres (PostgreSQL) 13.4` | [Installation guide](https://www.postgresql.org/download/) |
 | TomTom API | `1` | n/a |
 | Cloudinary API | `n/a` | n/a |
