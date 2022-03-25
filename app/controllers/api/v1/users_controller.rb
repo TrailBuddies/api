@@ -72,6 +72,16 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def change_password
+    if @user.authenticate(change_password_params[:current_password]) || @user.admin
+      @user.password = BCrypt::Password.create(change_password_params[:new_password])
+      @user.save
+      render json: { success: true }, status: 200
+    else
+      render json: { error: 'Invalid current password' }, status: 403
+    end
+  end
+
   # DELETE /users/:id
   def destroy
     user = User.find(params[:id])
@@ -97,6 +107,13 @@ class Api::V1::UsersController < ApplicationController
     params.require(:user).permit(:email, :password).tap do |p| 
       p.require(:email)
       p.require(:password)
+    end
+  end
+
+  def change_password_params
+    params.require(:user).permit(:new_password, :current_password).tap do |p|
+      p.require(:new_password)
+      p.require(:current_password)
     end
   end
 end
