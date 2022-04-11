@@ -72,6 +72,7 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  # PUT /users/:id/change_password
   def change_password
     if @user.authenticate(change_password_params[:current_password]) || @user.admin
       @user.password = BCrypt::Password.create(change_password_params[:new_password])
