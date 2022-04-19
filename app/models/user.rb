@@ -60,5 +60,7 @@ class User < ApplicationRecord
     end
 
     self.confirm_email_key.save
+
+    ConfirmJob.perform_later(self.id)
   end
 end
