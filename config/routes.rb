@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         get '/', to: 'users#index', on: :collection
         get '/me', to: 'users#me', on: :collection
         post '/confirm_email', to: 'users#confirm_email', on: :collection
+        post '/resend_confirm', to: 'users#resend_confirm', on: :collection
         post '/login', to: 'users#login', on: :collection
         post '/register', to: 'users#register', on: :collection
         delete '/logout', to: 'users#logout', on: :collection

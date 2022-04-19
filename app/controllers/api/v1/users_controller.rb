@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :require_token, only: [:me, :logout, :confirm_email]
+  before_action :require_token, only: [:me, :logout, :confirm_email, :resend_confirm]
   before_action :admin_only, only: [:index, :destroy]
 
   # GET /users/me
@@ -22,6 +22,22 @@ class Api::V1::UsersController < ApplicationController
         user.save
         render json: { success: true }, status: 200
       end
+    end
+  end
+
+  # POST /users/resend_confirm
+  def resend_confirm
+    if resend_params[:id].exists?
+      if @user.admin?
+        user = User.find_by(id: resend_params[:id])
+        user.create_confirm_email_key
+        render json: { success: true }, status: 200
+      else
+        render json: { error: 'You are unable to resend a confirmation email to another user' }, status: 403
+      end
+    else
+      @user.create_confirm_email_key
+      render json: { success: true }, status: 200
     end
   end
 
@@ -140,5 +156,9 @@ class Api::V1::UsersController < ApplicationController
     params.require(:confirm_email_key).permit(:key).tap do |p|
       p.require(:key)
     end
+  end
+
+  def resend_params
+    params.require(:user).permit(:id)
   end
 end
