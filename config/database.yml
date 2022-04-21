@@ -1,4 +1,4 @@
-default: &default
+local: &local
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -8,13 +8,12 @@ default: &default
   port: 5432
 
 development:
-  <<: *default
+  <<: *local
   database: api_development
 
 test:
-  <<: *default
+  <<: *local
   database: api_test
 
 production:
-  <<: *default
-  database: api_production
+  url: <%= ENV['DATABASE_URL'] %>
