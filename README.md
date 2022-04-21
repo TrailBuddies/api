@@ -61,6 +61,12 @@
 | `CLOUDINARY_SECRET` | A [Cloudinary API secret](https://cloudinary.com/documentation/cloudinary_glossary#api_key_and_secret). Will be used to store images | `string` | ✔️ |  | `FiPxyRsCqusHvXjaTtDttZmt` |
 | `TOMTOM_API_KEY` | A [TomTom maps](https://developer.tomtom.com/map-display-api/documentation/product-information/introduction) API key. Will be used te generate map images | `string` | ✔️ |  | `LRYbKgAuqUowhHtEoYtMNtLjPyfcNsN` |
 
+### Git Ignored Files
+| File | Description |
+| :-- | :-- |
+| `config/master.key` | The Rails credentials master key |
+| `config/rsa/*.pem` | The RSA keypair generated with `bin/keygen` |
+
 ### RSA Keypair
 You will need to generate a private/public keypair. On linux the commands would be: (in the project root)
 ```bash
