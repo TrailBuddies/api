@@ -16,4 +16,4 @@ test:
   database: api_test
 
 production:
-  url: <%= ENV['DATABASE_URL'] %>
+  url: <%= ENV['HEROKU_POSTGRESQL_MAUVE_URL'] %>
