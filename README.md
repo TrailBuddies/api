@@ -80,4 +80,5 @@ $ ssh-keygen -f config/rsa/key.pub -e -m pem > config/rsa/public.pem
 $ rm config/rsa/key.pub
 ```
 ❗ These commands are saved in the `bin/keygen` file
+
 ⚠️ Heroku: run `bin/keygen` locally and copy the keys into config (environment) variables on the Heroku dashboard
