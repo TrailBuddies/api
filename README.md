@@ -50,18 +50,18 @@
 | [`httparty`](https://rubygems.org/gems/httparty) | `'~> 0.20'` | [Rubydoc](https://www.rubydoc.info/gems/httparty/0.20.0) | Send HTTP requests to the TomTom API |
 
 ### Environment Variables
-| Name | Description | Type | Required | Default | Example |
-| :-- | :-- | :-: | :-: | :-: | :-- |
-| `PASSPHRASE` | A passphrase for the RSA keypair | `string` | ❌ |  | `entail.trickily.ravioli` |
-| `API_DB_USER` | PostgreSQL user that can access all necessary databases | `string` | ✔️ |  | `api_admin` |
-| `API_DB_PASSWORD` | The password for the above user | `string` | ❌ |  | `D$!5wK%9dm79Y$iS` |
-| `API_DB_HOST` | The PostgreSQL daemon host address | `string` | ❌ | `localhost:5432` | `db.example.app:9931` |
-| `EMAIL` | An email address for the seed user (created with rails `db:seed`) | `string` | ✔️ |  | `admin@example.app` |
-| `PASSWORD` | An unhashed (plain text) password for the seed user (above) | `string` | ✔️ |  | `!SF%h&F^*52FMTGe` |
-| `CLOUDINARY_SECRET` | A [Cloudinary API secret](https://cloudinary.com/documentation/cloudinary_glossary#api_key_and_secret). Will be used to store images | `string` | ✔️ |  | `FiPxyRsCqusHvXjaTtDttZmt` |
-| `TOMTOM_API_KEY` | A [TomTom maps](https://developer.tomtom.com/map-display-api/documentation/product-information/introduction) API key. Will be used te generate map images | `string` | ✔️ |  | `LRYbKgAuqUowhHtEoYtMNtLjPyfcNsN` |
-| `RSA_PUBLIC_KEY` | A RSA public key used to decode JWTs | `string` | ❌ | Contents of `config/rsa/public.pem` | `-----BEGIN RSA PUBLIC KEY----- MIIBCgKCAQEA5v...uKxyo/NQIDAQAB -----END RSA PUBLIC KEY-----` |
-| `RSA_PRIVATE_KEY` | A RSA private key used to sign JWTs | `string` | ❌ | Contents of `config/rsa/private.pem` | `-----BEGIN RSA PRIVATE KEY----- Proc-Type: 4,ENCRYPTED DEK-Info: AES-128-CBC,E01081BC91C9A106B160F08A24679562 MIIBCgKCAQEA5v...uKxyo/NQIDAQAB -----END RSA PRIVATE KEY-----` |
+| Name | Description | Required | Default |
+| :-- | :-- | :-: | :-: |
+| `PASSPHRASE` | A passphrase for the RSA keypair | ❌ | nil |
+| `API_DB_USER` | PostgreSQL user that can access all necessary databases | ✔️ | nil |
+| `API_DB_PASSWORD` | The password for the above user | ❌ | nil |
+| `API_DB_HOST` | The PostgreSQL daemon host address | ❌ | `localhost:5432` |
+| `EMAIL` | An email address for the seed user (created with rails `db:seed`) | ✔️ | nil |
+| `PASSWORD` | An unhashed (plain text) password for the seed user (above) | ✔️ | nil |
+| `CLOUDINARY_SECRET` | A [Cloudinary API secret](https://cloudinary.com/documentation/cloudinary_glossary#api_key_and_secret). Will be used to store images | ✔️ | nil |
+| `TOMTOM_API_KEY` | A [TomTom maps](https://developer.tomtom.com/map-display-api/documentation/product-information/introduction) API key. Will be used te generate map images | ✔️ | nil |
+| `RSA_PUBLIC_KEY` | A RSA public key used to decode JWTs | ❌ | Contents of `config/rsa/public.pem` |
+| `RSA_PRIVATE_KEY` | A RSA private key used to sign JWTs | ❌ | Contents of `config/rsa/private.pem` |
 
 ### Git Ignored Files
 | File | Description |
@@ -80,3 +80,4 @@ $ ssh-keygen -f config/rsa/key.pub -e -m pem > config/rsa/public.pem
 $ rm config/rsa/key.pub
 ```
 ❗ These commands are saved in the `bin/keygen` file
+⚠️ Heroku: run `bin/keygen` locally and copy the keys into config (environment) variables on the Heroku dashboard
