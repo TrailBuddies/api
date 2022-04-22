@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::API
   before_action :user_checks
 
+  include RSAUtil
+
   def user_checks
     @token = get_current_token
     @user = get_current_user
@@ -9,7 +11,7 @@ class ApplicationController < ActionController::API
   def get_current_user
     if @token
       begin
-        decoded_token = JWT.decode(@token, OpenSSL::PKey::RSA::new(File.read('config/rsa/public.pem'), ENV['PASSPHRASE']), true, { algorithm: 'RS256' })
+        decoded_token = JWT.decode(@token, OpenSSL::PKey::RSA::new(RSAUtil::Keys::priv, ENV['PASSPHRASE']), true, { algorithm: 'RS256' })
       rescue JWT::DecodeError
       end
 
@@ -57,7 +59,7 @@ class ApplicationController < ActionController::API
 
     token.sub!('Bearer ','')
     begin
-      JWT.decode(token, OpenSSL::PKey::RSA::new(File.read('config/rsa/public.pem'), ENV['PASSPHRASE']), true, { algorithm: 'RS256' })
+      JWT.decode(token, OpenSSL::PKey::RSA::new(RSAUtil::Keys::pub, ENV['PASSPHRASE']), true, { algorithm: 'RS256' })
       return true
     rescue JWT::DecodeError
       Rails.logger.warn 'Error decoding the JWT: ' + e.to_s

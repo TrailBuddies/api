@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :hike_events, dependent: :destroy
   after_create :generate_token, :create_confirm_email_key
 
+  include RSAUtil
+
   def hike_events
     HikeEvent.where(user_id: self.id)
   end
@@ -27,7 +29,7 @@ class User < ApplicationRecord
           iat: Time.now.to_i,
           sub: self.id
         },
-        OpenSSL::PKey::RSA.new(File.read('config/rsa/private.pem'), ENV['PASSPHRASE']),
+        OpenSSL::PKey::RSA.new(RSAUtil::Keys::priv, ENV['PASSPHRASE']),
         'RS256'
       )
       self.token.save
@@ -39,7 +41,7 @@ class User < ApplicationRecord
             iat: Time.now.to_i,
             sub: self.id + Time.now.to_s
           },
-          OpenSSL::PKey::RSA.new(File.read('config/rsa/private.pem'), ENV['PASSPHRASE']),
+          OpenSSL::PKey::RSA.new(RSAUtil::Keys::priv, ENV['PASSPHRASE']),
           'RS256'
         ),
         user_id: self.id
