@@ -49,7 +49,7 @@
 | [`cloudinary`](https://rubygems.org/gems/cloudinary) | `'~> 1.22'` | [Docs](http://cloudinary.com/documentation/rails_integration) | Use Cloudinary for Active Record attachments |
 | [`httparty`](https://rubygems.org/gems/httparty) | `'~> 0.20'` | [Rubydoc](https://www.rubydoc.info/gems/httparty/0.20.0) | Send HTTP requests to the TomTom API |
 
-### Required Environment Variables
+### Environment Variables
 | Name | Description | Type | Required | Default | Example |
 | :-- | :-- | :-: | :-: | :-: | :-- |
 | `PASSPHRASE` | A passphrase for the RSA keypair | `string` | ❌ |  | `entail.trickily.ravioli` |
@@ -60,6 +60,8 @@
 | `PASSWORD` | An unhashed (plain text) password for the seed user (above) | `string` | ✔️ |  | `!SF%h&F^*52FMTGe` |
 | `CLOUDINARY_SECRET` | A [Cloudinary API secret](https://cloudinary.com/documentation/cloudinary_glossary#api_key_and_secret). Will be used to store images | `string` | ✔️ |  | `FiPxyRsCqusHvXjaTtDttZmt` |
 | `TOMTOM_API_KEY` | A [TomTom maps](https://developer.tomtom.com/map-display-api/documentation/product-information/introduction) API key. Will be used te generate map images | `string` | ✔️ |  | `LRYbKgAuqUowhHtEoYtMNtLjPyfcNsN` |
+| `RSA_PUBLIC_KEY` | A RSA public key used to decode JWTs | `string` | ❌ | Contents of `config/rsa/public.pem` | `-----BEGIN RSA PUBLIC KEY----- MIIBCgKCAQEA5v...uKxyo/NQIDAQAB -----END RSA PUBLIC KEY-----` |
+| `RSA_PRIVATE_KEY` | A RSA private key used to sign JWTs | `string` | ❌ | Contents of `config/rsa/private.pem` | `-----BEGIN RSA PRIVATE KEY----- Proc-Type: 4,ENCRYPTED DEK-Info: AES-128-CBC,E01081BC91C9A106B160F08A24679562 MIIBCgKCAQEA5v...uKxyo/NQIDAQAB -----END RSA PRIVATE KEY-----` |
 
 ### Git Ignored Files
 | File | Description |
