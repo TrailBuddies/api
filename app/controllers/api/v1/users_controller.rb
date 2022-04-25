@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
     render json: @user
   end
 
-  # POST /users/confirm_email
+  # PUT /users/confirm_email
   def confirm_email
     confirm = ConfirmEmailKey.find_by(key: confirm_email_params[:key])
     if confirm.nil?
