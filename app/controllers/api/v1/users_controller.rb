@@ -18,7 +18,7 @@ class Api::V1::UsersController < ApplicationController
       if user.id != confirm.user_id && !user.admin
         render json: { error: 'You are unable to confirm using that key' }, status: 403
       else
-        user.verified = 'confirmed'
+        user.verified = true
         user.save
         render json: { success: true }, status: 200
       end
