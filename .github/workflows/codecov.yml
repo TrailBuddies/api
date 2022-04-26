@@ -1,0 +1,12 @@
+name: CD
+
+on:
+  workflow_dispatch:
+  push:
+ 
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: codecov/codecov-action@v2
