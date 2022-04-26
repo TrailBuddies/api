@@ -26,3 +26,6 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 *.pem
+
+# Ignore code coverage report
+/coverage

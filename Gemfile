@@ -38,6 +38,10 @@ group :development do
   gem 'spring', '~> 4.0.0'
 end
 
+group :test do
+  gem 'simplecov', '~> 0.21.2', require: false
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', '~> 1.2021.5', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
