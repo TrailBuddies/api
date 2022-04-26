@@ -9,3 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@latest
+        env:
+              CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: rails test
+          coverageLocations: ${{ github.workspace }}/coverage/coverage.json:simplecov
+          debug: true
