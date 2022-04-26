@@ -40,6 +40,7 @@ end
 
 group :test do
   gem 'simplecov', '~> 0.21.2', require: false
+  gem 'simplecov_json_formatter', '~> 0.1.2', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
