@@ -63,6 +63,6 @@ class User < ApplicationRecord
 
     self.confirm_email_key.save
 
-    ConfirmJob.perform_later(self.id)
+    NotificationsMailer.confirm_email(self).deliver_later
   end
 end
