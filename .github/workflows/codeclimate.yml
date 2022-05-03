@@ -1,4 +1,4 @@
-name: CD
+name: CodeClimate
 
 on:
   workflow_dispatch:
