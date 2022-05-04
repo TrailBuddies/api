@@ -1,4 +1,15 @@
-name: CodeClimate
+name: CI
+
+env:
+  # Required app environment variables
+  # https://github.com/TrailBuddies/api#environment-variables
+  PASSPHRASE: test-${{ matrix.os }}-${{ github.run_id }}
+  API_DB_USER: test
+  API_DB_PASSWORD: test
+  EMAIL: test@test.com
+  PASSWORD: test1234
+  # CLOUDINARY_SECRET: ${{ secrets.CLOUDINARY_SECRET }}
+  # TOMTOM_API_KEY: ${{ secrets.TOMTOM_API_KEY }}
 
 on:
   workflow_dispatch:
@@ -11,9 +22,9 @@ jobs:
       postgres:
         image: postgres:13
         env:
-          POSTGRES_USER: test
-          POSTGRES_DB: test
-          POSTGRES_PASSWORD: test
+          POSTGRES_USER: ${{ env.API_DB_USER }}
+          POSTGRES_DB: ${{ env.API_DB_USER }}
+          POSTGRES_PASSWORD: ${{ env.API_DB_PASSWORD }}
         ports: ['5432:5432']
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
@@ -31,15 +42,6 @@ jobs:
         uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-          # Required app enviaronment variables
-          # https://github.com/TrailBuddies/api#environment-variables
-          PASSPHRASE: test-${{ matrix.os }}-${{ github.run_id }}
-          API_DB_USER: test
-          API_DB_PASSWORD: test
-          EMAIL: test@test.com
-          PASSWORD: test1234
-          # CLOUDINARY_SECRET: ${{ secrets.CLOUDINARY_SECRET }}
-          # TOMTOM_API_KEY: ${{ secrets.TOMTOM_API_KEY }}
         with:
           coverageCommand: bin/rails test
           coverageLocations: ${{ github.workspace }}/coverage/coverage.json:simplecov
