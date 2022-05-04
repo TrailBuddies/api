@@ -5,7 +5,7 @@ env:
   # https://github.com/TrailBuddies/api#environment-variables
   API_DB_USER: test
   API_DB_PASSWORD: test
-  EMAIL: test@test.com
+  EMAIL: admin@test.com
   PASSWORD: test1234
   # CLOUDINARY_SECRET: ${{ secrets.CLOUDINARY_SECRET }}
   # TOMTOM_API_KEY: ${{ secrets.TOMTOM_API_KEY }}
