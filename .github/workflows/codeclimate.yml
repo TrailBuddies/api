@@ -24,8 +24,8 @@ jobs:
         with:
           bundler-cache: true
 
-       - name: Setup Rails Database
-         run: bin/rails db:setup
+      - name: Setup Rails Database
+        run: bin/rails db:setup
 
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
