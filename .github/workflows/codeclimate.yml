@@ -30,7 +30,6 @@ jobs:
       PASSPHRASE: test-${{ matrix.os }}-${{ github.run_id }}
 
     steps:
-
       - uses: actions/checkout@master
 
       - uses: ruby/setup-ruby@v1
