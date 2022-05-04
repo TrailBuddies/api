@@ -3,21 +3,40 @@ name: CodeClimate
 on:
   workflow_dispatch:
   push:
- 
+
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: test
+          POSTGRES_DB: test
+          POSTGRES_PASSWORD: test
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
       - uses: actions/checkout@master
-      
+
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      
+
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
-              CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          # Required app enviaronment variables
+          # https://github.com/TrailBuddies/api#environment-variables
+          PASSPHRASE: test-${{ matrix.os }}-${{ githun.run_id }}
+          API_DB_USER: test
+          API_DB_PASSWORD: test
+          EMAIL: test@test.com
+          PASSWORD: test1234
+          # CLOUDINARY_SECRET: ${{ secrets.CLOUDINARY_SECRET }}
+          # TOMTOM_API_KEY: ${{ secrets.TOMTOM_API_KEY }}
         with:
           coverageCommand: bin/rails test
           coverageLocations: ${{ github.workspace }}/coverage/coverage.json:simplecov
