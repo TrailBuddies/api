@@ -26,10 +26,10 @@ jobs:
           POSTGRES_PASSWORD: ${{ env.API_DB_PASSWORD }}
         ports: ['5432:5432']
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      PASSPHRASE: test-${{ matrix.os }}-${{ github.run_id }}
 
     steps:
-      env:
-        PASSPHRASE: test-${{ matrix.os }}-${{ github.run_id }}
 
       - uses: actions/checkout@master
 
