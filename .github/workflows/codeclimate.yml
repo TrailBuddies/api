@@ -30,7 +30,7 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
           # Required app enviaronment variables
           # https://github.com/TrailBuddies/api#environment-variables
-          PASSPHRASE: test-${{ matrix.os }}-${{ githun.run_id }}
+          PASSPHRASE: test-${{ matrix.os }}-${{ github.run_id }}
           API_DB_USER: test
           API_DB_PASSWORD: test
           EMAIL: test@test.com
