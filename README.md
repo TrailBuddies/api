@@ -20,7 +20,7 @@
 
 <div align="center">
   
-  ![CI](https://github.com/TrailBuddies/api/actions/workflows/ci.yml/badge.svg)
+  [![CI](https://github.com/TrailBuddies/api/actions/workflows/ci.yml/badge.svg)](https://github.com/TrailBuddies/api/actions/workflows/ci.yml)
   
   [![Maintainability](https://api.codeclimate.com/v1/badges/18472595c433d05014c4/maintainability)](https://codeclimate.com/github/TrailBuddies/api/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/18472595c433d05014c4/test_coverage)](https://codeclimate.com/github/TrailBuddies/api/test_coverage)
