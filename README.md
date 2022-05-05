@@ -13,10 +13,19 @@
   ⚠️ This project is under development. If you want to help please read [this](https://trailbuddies.club/join) ⚠️
 
   </sub>
-  
+
 </div>
 
 ---
+
+<div align="center">
+  
+  ![CI](https://github.com/TrailBuddies/api/actions/workflows/ci.yml/badge.svg)
+  
+  [![Maintainability](https://api.codeclimate.com/v1/badges/18472595c433d05014c4/maintainability)](https://codeclimate.com/github/TrailBuddies/api/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/18472595c433d05014c4/test_coverage)](https://codeclimate.com/github/TrailBuddies/api/test_coverage)
+  
+</div>
 
 ## Setup
 ### Primary Dependencies
