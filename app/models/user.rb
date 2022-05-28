@@ -8,6 +8,7 @@ class User < ApplicationRecord
   after_create :generate_token, :create_confirm_email_key
 
   include RSAUtil
+  include JWTUtil
 
   def hike_events
     HikeEvent.where(user_id: self.id)
@@ -23,27 +24,11 @@ class User < ApplicationRecord
 
   def generate_token (overwrite = false)
     if !self.token.nil? && overwrite
-      self.token.token = JWT.encode(
-        {
-          iss: 'probably digitalocean or some shit',
-          iat: Time.now.to_i,
-          sub: self.id
-        },
-        OpenSSL::PKey::RSA.new(RSAUtil::Keys::priv, ENV['PASSPHRASE']),
-        'RS256'
-      )
+      self.token.token = JWTUtil::encode(self)
       self.token.save
     elsif self.token.nil?
       self.token = Token.new(
-        token: JWT.encode(
-          {
-            iss: 'probably digitalocean or some shit',
-            iat: Time.now.to_i,
-            sub: self.id + Time.now.to_s
-          },
-          OpenSSL::PKey::RSA.new(RSAUtil::Keys::priv, ENV['PASSPHRASE']),
-          'RS256'
-        ),
+        token: JWTUtil::encode(self),
         user_id: self.id
       )
       self.token.save
