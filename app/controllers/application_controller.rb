@@ -2,6 +2,7 @@ class ApplicationController < ActionController::API
   before_action :user_checks
 
   include RSAUtil
+  include JWTUtil
 
   def user_checks
     @token = get_current_token
@@ -11,13 +12,14 @@ class ApplicationController < ActionController::API
   def get_current_user
     if @token
       begin
-        decoded_token = JWT.decode(@token, OpenSSL::PKey::RSA::new(RSAUtil::Keys::priv, ENV['PASSPHRASE']), true, { algorithm: 'RS256' })
+        decoded_token = JWTUtil::decode(@token)
       rescue JWT::DecodeError
       end
 
       if decoded_token == nil
         render json: { error: 'Invalid token' }, status: :unauthorized
       else
+        print decoded_token
         subject = decoded_token[0]['sub']
 
         token = Token.find_by(user_id: subject.split('.')[0])
@@ -59,7 +61,7 @@ class ApplicationController < ActionController::API
 
     token.sub!('Bearer ','')
     begin
-      JWT.decode(token, OpenSSL::PKey::RSA::new(RSAUtil::Keys::pub, ENV['PASSPHRASE']), true, { algorithm: 'RS256' })
+      JWTUtil::decode(token)
       return true
     rescue JWT::DecodeError
       Rails.logger.warn 'Error decoding the JWT: ' + e.to_s
