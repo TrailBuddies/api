@@ -1,12 +1,23 @@
 module JWTUtil
   include RSAUtil
 
-  def self::encode(user)
+  module Auth
+    def self::gen_access_token(user)
+      JWTUtil::encode(user.id + '.' + Time.now.to_s)
+    end
+
+    def self::gen_refresh_token(user)
+      JWTUtil::encode(user.id + '.' + Time.now.to_s)
+    end
+  end
+
+
+  def self::encode(payload)
     JWT.encode(
       {
         iss: 'probably digitalocean or some shit',
         iat: Time.now.to_i,
-        sub: user.id + '.' + Time.now.to_s
+        sub: payload
       },
       OpenSSL::PKey::RSA.new(RSAUtil::Keys::priv, ENV['PASSPHRASE']),
       'RS256'
