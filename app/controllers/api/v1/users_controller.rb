@@ -45,7 +45,7 @@ class Api::V1::UsersController < ApplicationController
   def login
     user = User.find_by(email: login_user_params[:email])
     if user && user.authenticate(login_user_params[:password])
-      token = user.generate_token(true)
+      token = user.generate_token(false) # DONT OVERWRITE EXISTING TOKEN
       render json: { user: user, auth: token }
     else
       render json: { error: 'Invalid email password combination' }, status: 400
