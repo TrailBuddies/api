@@ -69,12 +69,10 @@ ActiveRecord::Schema.define(version: 2022_06_10_104307) do
   end
 
   create_table "tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "access", null: false
+    t.string "token", null: false
     t.uuid "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "refresh", null: false
-    t.datetime "expires_at", null: false
     t.index ["user_id"], name: "index_tokens_on_user_id"
   end
 

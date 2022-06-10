@@ -126,7 +126,7 @@ class Api::V1::HikeEventsController < ApplicationController
       render json: { error: 'Invalid \'difficulty\' param. It failed to parse as an integer or it was out of range (1 <= x <= 10).' }, status: 400 and return
     end
 
-    return { title: p[:title], description: p[:description], duration: duration, lat: lat, lng: lng, difficulty: difficulty }
+    return { title: p[:title], description: p[:description], duration: duration, lat: lat.to_s, lng: lng.to_s, difficulty: difficulty }
   end
   
   def create_params
