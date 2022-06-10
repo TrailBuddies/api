@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_25_171317) do
+ActiveRecord::Schema.define(version: 2022_06_10_104307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 2022_04_25_171317) do
     t.string "title", null: false
     t.string "description", null: false
     t.daterange "duration", null: false
-    t.decimal "lat", precision: 10, scale: 6, null: false
-    t.decimal "lng", precision: 10, scale: 6, null: false
+    t.string "lat", null: false
+    t.string "lng", null: false
     t.integer "difficulty", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -69,10 +69,12 @@ ActiveRecord::Schema.define(version: 2022_04_25_171317) do
   end
 
   create_table "tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "token", null: false
+    t.string "access", null: false
     t.uuid "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "refresh", null: false
+    t.datetime "expires_at", null: false
     t.index ["user_id"], name: "index_tokens_on_user_id"
   end
 
