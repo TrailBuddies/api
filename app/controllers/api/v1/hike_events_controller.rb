@@ -1,6 +1,8 @@
 class Api::V1::HikeEventsController < ApplicationController
   before_action :require_token, only: [:current_user, :create, :destroy, :update, :join, :leave, :confirm]
 
+  include StrUtil
+
   def current_user
     render json: @user.hike_events
   end
@@ -110,8 +112,8 @@ class Api::V1::HikeEventsController < ApplicationController
       return
     end
 
-    lat = p[:lat].to_f
-    lng = p[:lng].to_f
+    lat = StrUtil::is_valid_float?(p[:lat])
+    lng = StrUtil::is_valid_float?(p[:lng])
 
     if !lat || !lng
       render json: { error: 'Invalid \'lat\' and \'lng\' params. They failed to parse as floating point numbers' }, status: 400 and return
@@ -126,7 +128,7 @@ class Api::V1::HikeEventsController < ApplicationController
       render json: { error: 'Invalid \'difficulty\' param. It failed to parse as an integer or it was out of range (1 <= x <= 10).' }, status: 400 and return
     end
 
-    return { title: p[:title], description: p[:description], duration: duration, lat: lat, lng: lng, difficulty: difficulty }
+    return { title: p[:title], description: p[:description], duration: duration, lat: lat.to_s, lng: lng.to_s, difficulty: difficulty }
   end
   
   def create_params

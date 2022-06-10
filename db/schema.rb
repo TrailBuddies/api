@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_25_171317) do
+ActiveRecord::Schema.define(version: 2022_06_10_104307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 2022_04_25_171317) do
     t.string "title", null: false
     t.string "description", null: false
     t.daterange "duration", null: false
-    t.decimal "lat", precision: 10, scale: 6, null: false
-    t.decimal "lng", precision: 10, scale: 6, null: false
+    t.string "lat", null: false
+    t.string "lng", null: false
     t.integer "difficulty", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
