@@ -112,8 +112,11 @@ class Api::V1::HikeEventsController < ApplicationController
       return
     end
 
-    lat = StrUtil::is_valid_float?(p[:lat])
-    lng = StrUtil::is_valid_float?(p[:lng])
+    lat_valid = StrUtil::is_valid_float?(p[:lat])
+    lng_valid = StrUtil::is_valid_float?(p[:lng])
+
+    lat = p[:lat]
+    lng = p[:lng]
 
     if !lat || !lng
       render json: { error: 'Invalid \'lat\' and \'lng\' params. They failed to parse as floating point numbers' }, status: 400 and return
