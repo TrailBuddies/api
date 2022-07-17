@@ -21,7 +21,7 @@ Rails.application.routes.draw do
         post '/register', to: 'users#register', on: :collection
         delete '/logout', to: 'users#logout', on: :collection
         put '/change_password', to: 'users#change_password', on: :collection
-        get '/:id', to: 'users#show', :constraints  => { :id => /[0-z\.]+/ }, on: :collection
+        get '/:id', to: 'users#show', on: :collection
 
         get '/me/hike_events', to: 'hike_events#current_user', on: :collection
         get '/:id/hike_events', to: 'hike_events#show_for_user', on: :collection
