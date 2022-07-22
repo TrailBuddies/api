@@ -94,3 +94,8 @@ $ rm config/rsa/key.pub
 ❗ These commands are saved in the `bin/keygen` file
 
 ⚠️ Heroku: run `bin/keygen` locally and copy the keys into config (environment) variables on the Heroku dashboard
+
+
+## Useful Information
+#### Location image resolution
+https://github.com/TrailBuddies/api/blob/4b3b7d61ea59234f6688843b1b9618153614007b/app/models/hike_event.rb#L21-L22
