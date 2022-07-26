@@ -190,7 +190,7 @@ class Api::V1::HikeEventsController < ApplicationController
       end
 
 
-      if start > finish
+      if start >= finish
         render json: { error: "Start time '#{duration[0]}' is after finish time '#{duration[1]}'" }, status: 400 and return
       end
 
