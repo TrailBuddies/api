@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users/me
   def me
-    render json: @user
+    render json: @user.as_json(methods: :avatar_url)
   end
 
   # PUT /users/confirm_email

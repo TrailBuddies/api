@@ -2,6 +2,7 @@ require 'securerandom'
 require 'base64'
 
 class User < ApplicationRecord
+  has_one_attached :avatar, dependent: :destroy
   has_one :token, dependent: :destroy
   has_one :confirm_email_key, dependent: :destroy
   has_many :hike_events, dependent: :destroy
@@ -49,5 +50,13 @@ class User < ApplicationRecord
     self.confirm_email_key.save
 
     NotificationsMailer.confirm_email(self).deliver_later
+  end
+
+  def avatar_url
+    if self.avatar.attached?
+      return Cloudinary::Utils.cloudinary_url(self.avatar.key)
+    else
+      return Cloudinary::Utils.cloudinary_url('default_avatar')
+    end
   end
 end
