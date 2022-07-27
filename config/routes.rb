@@ -15,16 +15,22 @@ Rails.application.routes.draw do
 
       resource :users do
         get '/', to: 'users#index', on: :collection
+
         get '/me', to: 'users#me', on: :collection
+        put '/me/avatar', to: 'users#update_avatar', on: :collection
+        get '/me/hike_events', to: 'hike_events#current_user', on: :collection
+        
         put '/confirm_email', to: 'users#confirm_email', on: :collection
+        put '/change_password', to: 'users#change_password', on: :collection
+
         post '/login', to: 'users#login', on: :collection
         post '/register', to: 'users#register', on: :collection
         delete '/logout', to: 'users#logout', on: :collection
-        put '/change_password', to: 'users#change_password', on: :collection
+        
+        get '/:id/hike_events', to: 'hike_events#show_for_user', on: :collection
+        put '/:id/avatar', to: 'users#update_users_avatar', on: :collection
         get '/:id', to: 'users#show', on: :collection
 
-        get '/me/hike_events', to: 'hike_events#current_user', on: :collection
-        get '/:id/hike_events', to: 'hike_events#show_for_user', on: :collection
       end
     end
   end

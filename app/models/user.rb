@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :hike_events, dependent: :destroy
   after_create :generate_token, :create_confirm_email_key
 
+  validates :avatar, content_type: /\Aimage\/.*\z/ , size: { less_than: 5.megabytes }
+
   include RSAUtil
   include JWTUtil
 
