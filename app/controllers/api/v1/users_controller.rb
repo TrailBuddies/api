@@ -1,5 +1,7 @@
+require 'rmagick'
+
 class Api::V1::UsersController < ApplicationController
-  before_action :require_token, only: [:me, :logout, :confirm_email, :resend_confirm]
+  before_action :require_token, only: [:me, :logout, :confirm_email, :resend_confirm, :update_avatar]
   before_action :admin_only, only: [:index, :destroy]
 
   # GET /users/me
@@ -87,6 +89,18 @@ class Api::V1::UsersController < ApplicationController
     render json: users
   end
 
+  # PUT /users/me/avatar
+  def update_avatar
+    path = update_avatar_params.tempfile.path
+    Magick::Image.read(path).first.resize_to_fill(512, 512).write(path)
+
+    if @user.update(avatar: update_avatar_params)
+      render json: { success: true }, status: 200
+    else
+      render json: { error: 'Invalid avatar. Avatars must be images less than 5MB' }, status: 400
+    end
+  end
+
   # GET /users/:id
   def show
     user = if params[:id].include?('@')
@@ -160,5 +174,9 @@ class Api::V1::UsersController < ApplicationController
 
   def resend_params
     params.require(:user).permit(:id)
+  end
+
+  def update_avatar_params
+    params.require(:avatar)
   end
 end

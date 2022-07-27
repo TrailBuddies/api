@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resource :users do
         get '/', to: 'users#index', on: :collection
         get '/me', to: 'users#me', on: :collection
+        put '/me/avatar', to: 'users#update_avatar', on: :collection
         put '/confirm_email', to: 'users#confirm_email', on: :collection
         post '/login', to: 'users#login', on: :collection
         post '/register', to: 'users#register', on: :collection
