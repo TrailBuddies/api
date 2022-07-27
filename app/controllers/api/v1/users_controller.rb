@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users/me
   def me
-    render json: @user.as_json(methods: :avatar_url)
+    render json: @user.as_json(methods: [:avatar_url])
   end
 
   # PUT /users/confirm_email
@@ -97,9 +97,9 @@ class Api::V1::UsersController < ApplicationController
 
     if user
       if @user.nil? || !@user.admin
-        render json: user.as_json(only: [:id, :username, :created_at]), status: 200
+        render json: user.as_json(only: [:id, :username, :created_at], methods: [:avatar_url]), status: 200
       else
-        render json: user
+        render json: user.as_json(methods: [:avatar_url])
       end
     else
       render json: { error: 'User does not exist' }, status: 404
