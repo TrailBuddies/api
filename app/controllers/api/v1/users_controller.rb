@@ -101,6 +101,25 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  # PUT /users/:id/avatar
+  def update_users_avatar
+    target_user = User.find(params[:id])
+
+    if target_user.nil?
+      return render json: { error: 'User not found' }, status: 404
+    elsif target_user.id != @user.id && !@user.admin
+      return render json: { error: 'You are unable to update another user\'s avatar' }, status: 403
+    end
+
+    path = update_avatar_params.tempfile.path
+    Magick::Image.read(path).first.resize_to_fill(512, 512).write(path)
+    if target_user.update(avatar: update_avatar_params)
+      render json: { success: true }, status: 200
+    else
+      render json: { error: 'Invalid avatar. Avatars must be images less than 5MB' }, status: 400
+    end
+  end
+
   # GET /users/:id
   def show
     user = if params[:id].include?('@')
