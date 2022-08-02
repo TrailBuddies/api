@@ -6,11 +6,11 @@ ruby '3.1.0'
 gem 'net-smtp', '~> 0.3.1', require: false
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 7.0.1', '>= 7.0.0'
+gem 'rails', '~> 7.0.3', '>= 7.0.3.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 5.6', '>= 5.6.4'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -53,4 +53,4 @@ gem 'rmagick', '~> 4.2.4'
 gem 'cloudinary', '~> 1.22'
 gem 'httparty', '~> 0.20'
 
-gem 'active_storage_validations', '~> 0.9'
+gem 'active_storage_validations', '~> 0.9', '>= 0.9.8'
