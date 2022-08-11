@@ -1,11 +1,145 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+hike_event_ee38550c-a441-4dd9-9d5e-f2dcfe257851:
+  id: ee38550c-a441-4dd9-9d5e-f2dcfe257851
+  title: test
+  description: foo bar baz biz
+  duration: !ruby/range
+    begin: 2022-06-15
+    end: 2022-06-16
+    excl: true
+  lat: '19.559521082123705'
+  lng: "-36.03396955735619"
+  difficulty: 7
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-10 10:56:00.462292000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: 2022-06-10 10:56:00.462292000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-10 10:56:01.488179000 Z
+    zone: *1
+    time: 2022-06-10 10:56:01.488179000 Z
+  user_id: c064b3f8-5cf7-44c7-967f-4d411423bc72
+  users: []
+  users_unconfirmed: []
+
+hike_event_5c8c5c1b-af0d-42d4-a22c-5ca89e9b9c6e:
+  id: 5c8c5c1b-af0d-42d4-a22c-5ca89e9b9c6e
+  title: test
+  description: foo bar baz biz
+  duration: !ruby/range
+    begin: 2022-06-15
+    end: 2022-06-16
+    excl: true
+  lat: '19.559521082123705'
+  lng: "-36.03396955735619"
+  difficulty: 7
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-10 10:56:35.557702000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: 2022-06-10 10:56:35.557702000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-10 10:56:36.463809000 Z
+    zone: *1
+    time: 2022-06-10 10:56:36.463809000 Z
+  user_id: c064b3f8-5cf7-44c7-967f-4d411423bc72
+  users: []
+  users_unconfirmed: []
+
+hike_event_d98eed8a-1b80-46ae-88c8-4ffae519fa27:
+  id: d98eed8a-1b80-46ae-88c8-4ffae519fa27
+  title: test
+  description: foo bar baz biz
+  duration: !ruby/range
+    begin: 2022-06-15
+    end: 2022-06-16
+    excl: true
+  lat: '19.559521082123705'
+  lng: "-36.03396955735619"
+  difficulty: 7
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-13 07:23:39.523436000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: 2022-06-13 07:23:39.523436000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-13 07:23:40.536191000 Z
+    zone: *1
+    time: 2022-06-13 07:23:40.536191000 Z
+  user_id: c064b3f8-5cf7-44c7-967f-4d411423bc72
+  users: []
+  users_unconfirmed: []
+
+hike_event_c08c2984-619b-45d8-9492-ad1a94f1a54e:
+  id: c08c2984-619b-45d8-9492-ad1a94f1a54e
+  title: test
+  description: foo bar baz biz
+  duration: !ruby/range
+    begin: 2022-06-15
+    end: 2022-06-16
+    excl: true
+  lat: '19.559521082123705'
+  lng: "-36.03396955735619"
+  difficulty: 7
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-13 07:24:55.195832000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: 2022-06-13 07:24:55.195832000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-13 07:24:56.470110000 Z
+    zone: *1
+    time: 2022-06-13 07:24:56.470110000 Z
+  user_id: c064b3f8-5cf7-44c7-967f-4d411423bc72
+  users: []
+  users_unconfirmed: []
+
+hike_event_b335ea00-f3fa-44ae-914d-4b78548cea4a:
+  id: b335ea00-f3fa-44ae-914d-4b78548cea4a
+  title: majik forest
+  description: a quick, short walk in Majik Forest
+  duration: !ruby/range
+    begin: 2022-06-15
+    end: 2022-06-16
+    excl: true
+  lat: '18.626932681888018'
+  lng: "-33.859854174688344"
+  difficulty: 2
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-13 07:30:52.397691000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: 2022-06-13 07:30:52.397691000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-13 07:30:54.002275000 Z
+    zone: *1
+    time: 2022-06-13 07:30:54.002275000 Z
+  user_id: c064b3f8-5cf7-44c7-967f-4d411423bc72
+  users: []
+  users_unconfirmed: []
+
+hike_event_9779c9cb-b13f-4b88-ab3d-79894c451e7a:
+  id: 9779c9cb-b13f-4b88-ab3d-79894c451e7a
+  title: somewhere??
+  description: a brisk walk somewhere. bring food
+  duration: !ruby/range
+    begin: 2022-09-03
+    end: 2022-09-04
+    excl: true
+  lat: '19.626932681888018'
+  lng: "-34.859854174688344"
+  difficulty: 2
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-07-22 09:14:06.816403000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: 2022-07-22 09:14:06.816403000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-07-22 09:14:07.724556000 Z
+    zone: *1
+    time: 2022-07-22 09:14:07.724556000 Z
+  user_id: c064b3f8-5cf7-44c7-967f-4d411423bc72
+  users: []
+  users_unconfirmed: []

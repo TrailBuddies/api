@@ -1,11 +1,29 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+token_bc253c0c-11b9-4df5-b53a-093b8178388a:
+  id: bc253c0c-11b9-4df5-b53a-093b8178388a
+  token: eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJwcm9iYWJseSBkaWdpdGFsb2NlYW4gb3Igc29tZSBzaGl0IiwiaWF0IjoxNjU0ODU4MzYzLCJzdWIiOiIzNGIwZGVmYy1hYmI3LTQ0MjgtYjZlMC0xMzAzN2MxZWU5YzUuMjAyMi0wNi0xMCAxMjo1Mjo0MyArMDIwMCJ9.H6q1xuOedlm-1azkzzovcxfMYpQ8pLbupP74ayaGUZJzK1V1msaJlvMh8RNq9q140yCn8Farl8-PWXQ2gOlLAe4hWyZZOKt724ozyvBmBE75YLmjvJwW1gCHhoI4c6m_gc4-WQXr5ezF9bZgUqp3teza5BAo-OrvdxkzkiYL1WeqiqqCmRjLPZOSmH_6nsnfTmJdgH8e3IRE5EIBC2o0vchWIzPxM97XUM7VQoq4lXkU3LtZMui2loPkeuZclA5p5aDKwCW3QUzw3P2Amw50rHss4K1y6ULIkqDEK2avzmtFzQj5fIccq1onTAppMt1CpZjVa7_Un3rU0R08wsQ1zA
+  user_id: 34b0defc-abb7-4428-b6e0-13037c1ee9c5
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-10 10:52:43.358526000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: 2022-06-10 10:52:43.358526000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-10 10:52:43.358526000 Z
+    zone: *1
+    time: 2022-06-10 10:52:43.358526000 Z
+
+token_f68a752c-8899-4066-a4b9-58f85db6b962:
+  id: f68a752c-8899-4066-a4b9-58f85db6b962
+  token: eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJwcm9iYWJseSBkaWdpdGFsb2NlYW4gb3Igc29tZSBzaGl0IiwiaWF0IjoxNjU0ODU4NTMwLCJzdWIiOiJjMDY0YjNmOC01Y2Y3LTQ0YzctOTY3Zi00ZDQxMTQyM2JjNzIifQ.jmy8tjTmkVcdBNDjNM03-b8GIBG_xoyjf8Ko0-higvHWq6FJ5aceGGGszA038FRrBKThDqlELaeZmll2zZ9i-QNWbZlnag2rMEzyoVdkFrSzdZQ4-vpLJ1rjYQpqZUqzkMHFEEdVtzgfldlspgTrYrMMnwmVTO7Jw8XMObuyBInQVF81ymeFW8u1hzM8kdH1qHHpHqK7E5AhLUBiD7b_ikFtnBFoEi-FmhI76Yz6iWiLoOy4JHJCB1Y8j0mVQGmafSCMNwQpCp9MsM7TI7s26hzbAPRgBrVAJNX9rqpsdEJ2wkpZyAKhuVZzZT11B57HugVzm2S3udndUe-iwc5yLg
+  user_id: c064b3f8-5cf7-44c7-967f-4d411423bc72
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-10 10:52:43.083498000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: 2022-06-10 10:52:43.083498000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-10 10:55:30.182566000 Z
+    zone: *1
+    time: 2022-06-10 10:55:30.182566000 Z
