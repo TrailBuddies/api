@@ -1,21 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-confirm_email_key_ff7a6005-341e-4cd7-a5b6-9600a27c7358:
-  id: ff7a6005-341e-4cd7-a5b6-9600a27c7358
-  key: OGUyM2EyYzI3NWU5ZTY4NDIxODgzZTEzMTFhMjAwZmEzZjMxZDRhNzM3ZDFkY2VhNWNmODQ0MDlkZjBj
-  created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2022-06-10 10:52:43.091939000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: Etc/UTC
-    time: 2022-06-10 10:52:43.091939000 Z
-  updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2022-06-10 10:52:43.091939000 Z
-    zone: *1
-    time: 2022-06-10 10:52:43.091939000 Z
-  user_id: c064b3f8-5cf7-44c7-967f-4d411423bc72
-  expires_in_s: 172800
-
-confirm_email_key_68ebce7b-dfa1-4c86-9786-47a7af971d30:
+test_user_confirm_email_key:
   id: 68ebce7b-dfa1-4c86-9786-47a7af971d30
   key: YTI5MGE5ZTUzYmIyNmRmY2Y2YjM5ZjgwNjQ2ZjllMWRhOTdmYWZiNjkzOTlmOTJlNTFhNGE4MDFkMDU2
   created_at: !ruby/object:ActiveSupport::TimeWithZone
@@ -28,4 +13,19 @@ confirm_email_key_68ebce7b-dfa1-4c86-9786-47a7af971d30:
     zone: *1
     time: 2022-06-10 10:52:43.361033000 Z
   user_id: 34b0defc-abb7-4428-b6e0-13037c1ee9c5
+  expires_in_s: 172800
+
+matievisthekat_user_confirm_email_key:
+  id: ff7a6005-341e-4cd7-a5b6-9600a27c7358
+  key: OGUyM2EyYzI3NWU5ZTY4NDIxODgzZTEzMTFhMjAwZmEzZjMxZDRhNzM3ZDFkY2VhNWNmODQ0MDlkZjBj
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-10 10:52:43.091939000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: 2022-06-10 10:52:43.091939000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-06-10 10:52:43.091939000 Z
+    zone: *1
+    time: 2022-06-10 10:52:43.091939000 Z
+  user_id: c064b3f8-5cf7-44c7-967f-4d411423bc72
   expires_in_s: 172800
