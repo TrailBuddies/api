@@ -53,3 +53,4 @@ jobs:
           git pull --commit
           git add .
           git diff --quiet && git diff --staged --quiet || git commit -m '[docs] Generate ERD'
+          git push
