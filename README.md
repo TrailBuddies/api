@@ -100,3 +100,8 @@ $ rm config/rsa/key.pub
 ## Useful Information
 #### Location image resolution
 https://github.com/TrailBuddies/api/blob/4b3b7d61ea59234f6688843b1b9618153614007b/app/models/hike_event.rb#L21-L22
+
+#### No Fixtures for Token Model?
+That's right. There are no fixtures for the Token model. No sample data is given because each token is generated with a unique passphrase. If I put a token generated with passphrase `foo` in the fixtures file, it will not be able to be decoded in another instance of the project running with a passphrase of `bar`.
+
+You cannot decode a JWT if you do not have the right passphrase
