@@ -3,7 +3,7 @@
 test:
   id: 34b0defc-abb7-4428-b6e0-13037c1ee9c5
   username: test
-  password: "$2a$12$V73k./3VwSVnlqZWFITROeDrkxZDRID4./0t/jaijQqxEZkxUdBme"
+  password: "$2a$12$U86q/l2R5wO4mjFZX1u17ONFvInvDCrwaEi5ybU/Wk.ocXPkAtx6y" # 'bar'
   email: test@test.com
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2022-06-10 10:52:43.353320000 Z
@@ -20,7 +20,7 @@ test:
 matievisthekat:
   id: c064b3f8-5cf7-44c7-967f-4d411423bc72
   username: matievisthekat
-  password: "$2a$12$9709dAxnxZIM4yLk7e1yu.sXcc0j3CtTWZuoCj13NL5Z9wLqy.uyK"
+  password: "$2a$12$o/MnBpQt73bAhutzoNkNQu.TcJ4OPqY5yryPWlvUjoGwQcZR/QrFi" # 'foo'
   email: matievisthekat@gmail.com
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2022-06-10 10:52:43.068551000 Z
