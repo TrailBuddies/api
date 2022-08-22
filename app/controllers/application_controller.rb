@@ -50,7 +50,7 @@ class ApplicationController < ActionController::API
   def admin_only
     has_token = require_token
     if has_token && (@user.nil? || !@user.admin)
-      render json: { error: 'Only admins can do that' }, status: :unauthorized
+      render json: { error: 'Only admins can do that' }, status: :forbidden
     end
   end
 
