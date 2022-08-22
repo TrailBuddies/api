@@ -3,10 +3,10 @@ require "test_helper"
 class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @current_user = users(:test)
-    @current_user_token = tokens(:test_user_token)
+    @current_user_token = @current_user.generate_token(true)
 
     @admin_user = users(:matievisthekat)
-    @admin_user_token = tokens(:matievisthekat_token)
+    @admin_user_token = @admin_user.generate_token(true)
   end
 
   test "should fail to get index" do
