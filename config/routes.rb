@@ -30,6 +30,7 @@ Rails.application.routes.draw do
         get '/:id/hike_events', to: 'hike_events#show_for_user', on: :collection
         put '/:id/avatar', to: 'users#update_users_avatar', on: :collection
         get '/:id', to: 'users#show', on: :collection
+        delete '/:id', to: 'users#destroy', on: :collection
 
       end
     end
