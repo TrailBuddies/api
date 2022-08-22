@@ -50,7 +50,7 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
   #   assert_response :success
   # end
 
-  test "should try, but fail to, destroy the current user" do
+  test "should try but fail to destroy the current user" do
     delete "/api/v1/users/#{@current_user.id}", headers: {
       Authorization: "Bearer #{@current_user_token.token}"
     }, as: :json
