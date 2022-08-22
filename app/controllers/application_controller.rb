@@ -19,15 +19,14 @@ class ApplicationController < ActionController::API
       if decoded_token == nil
         render json: { error: 'Invalid token' }, status: :unauthorized
       else
-        print decoded_token
         subject = decoded_token[0]['sub']
 
         token = Token.find_by(user_id: subject.split('.')[0])
-        user = if !token.nil?
-          User.find(token.user_id)
-        end
+        user = unless token.nil?
+                 User.find(token.user_id)
+               end
 
-        if !token || !user || subject != user.id
+        if !token || !user || subject.split('.')[0] != user.id
           render json: { error: "Invalid token" }, status: :unauthorized
         else
           return user
@@ -43,12 +42,14 @@ class ApplicationController < ActionController::API
   def require_token
     if !@token || !is_valid_token(@token)
       render json: { error: 'No valid token provided in the \'Authorization\' header' }, status: :forbidden
+      return false
     end
+    true
   end
 
   def admin_only
-    require_token
-    if !@user.admin
+    has_token = require_token
+    if has_token && (@user.nil? || !@user.admin)
       render json: { error: 'Only admins can do that' }, status: :unauthorized
     end
   end
