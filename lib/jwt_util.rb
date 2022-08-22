@@ -6,7 +6,7 @@ module JWTUtil
       {
         iss: 'probably digitalocean or some shit',
         iat: Time.now.to_i,
-        sub: user.id + '.' + Time.now.to_s
+        sub: user.id + '.' + Time.now.to_s + '.' + SecureRandom.hex(5)
       },
       OpenSSL::PKey::RSA.new(RSAUtil::Keys::priv, ENV['PASSPHRASE']),
       'RS256'

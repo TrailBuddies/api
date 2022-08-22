@@ -4,6 +4,10 @@ class UserTest < ActiveSupport::TestCase
   setup do
     @user_matievisthekat = users(:matievisthekat)
     @user_test = users(:test)
+
+    # initialize tokens
+    @user_matievisthekat.generate_token(true)
+    @user_test.generate_token(true)
   end
 
   test 'should fail to authenticate that passwords match' do
@@ -16,27 +20,23 @@ class UserTest < ActiveSupport::TestCase
 
   test 'should delete the user\'s token' do
     assert_difference('Token.count', -1) do
-      @user_matievisthekat.remove_token
+      res = @user_matievisthekat.remove_token
 
-      assert_nil token_by_id(@user_matievisthekat.id)
+      assert token_by_id(@user_matievisthekat.id) == nil || res.frozen?
     end
   end
 
-  # test 'should remove old token and generate a new one' do
-  #
-  #   previous = token_by_id(@user_test.id)
-  #   @user_test.remove_token
-  #   @user_test.generate_token
-  #   current = token_by_id(@user_test.id)
-  #
-  #   assert_not_nil token_by_id(@user_test.id)
-  #   assert_not_equal previous.token, current.token
-  # end
+  test 'should remove old token and generate a new one' do
+    previous = @user_test.remove_token
+    current = @user_test.generate_token
+
+    assert_not_nil current
+    assert_not_equal previous.token, current.token
+  end
 
   test 'should overwrite the previous token with a new token' do
     previous = token_by_id(@user_matievisthekat.id)
-    @user_matievisthekat.generate_token(true)
-    current = token_by_id(@user_matievisthekat.id)
+    current = @user_matievisthekat.generate_token(true)
 
     assert_not_nil token_by_id(@user_matievisthekat.id)
     assert_not_equal previous.token, current.token

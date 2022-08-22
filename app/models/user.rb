@@ -26,10 +26,10 @@ class User < ApplicationRecord
   end
 
   def generate_token (overwrite = false)
-    if !self.token.nil? && overwrite
+    if !self.token.nil? && !self.token.frozen? && overwrite
       self.token.token = JWTUtil::encode(self)
       self.token.save
-    elsif self.token.nil?
+    else
       self.token = Token.new(
         token: JWTUtil::encode(self),
         user_id: self.id
