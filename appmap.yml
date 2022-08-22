@@ -1,4 +1,0 @@
-name: api
-packages:
-  - path: app
-  - path: lib
