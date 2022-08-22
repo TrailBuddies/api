@@ -71,11 +71,6 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    appmap (0.87.0)
-      activesupport
-      method_source
-      rack
-      reverse_markdown
     aws_cf_signer (0.1.3)
     bcrypt (3.1.18)
     bootsnap (1.13.0)
@@ -189,8 +184,6 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    reverse_markdown (2.1.1)
-      nokogiri
     rexml (3.2.5)
     rmagick (4.2.6)
     ruby-graphviz (1.2.5)
@@ -220,7 +213,6 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage_validations (~> 0.9, >= 0.9.8)
-  appmap (~> 0.87)
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug (~> 11.1.3)
