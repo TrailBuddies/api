@@ -77,7 +77,7 @@ class Api::V1::UsersController < ApplicationController
     begin
       user = User.create(email: email, username: username, password: password)
       token = user.generate_token(true)
-      render json: { user: user, auth: token }
+      render json: { user: user, auth: token }, status: :created
     rescue => exception
       render json: { error: exception.message }, status: 400
     end
