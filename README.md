@@ -52,6 +52,9 @@
 | [`byebug`](https://rubygems.org/gems/byebug) | `'~> 11.1.3'` | [Rubydoc](https://www.rubydoc.info/gems/byebug/11.1.3) | 🤷 |
 | [`listen`](https://rubygems.org/gems/listen) | `'~> 3.3'` | [Rubydoc](https://www.rubydoc.info/gems/listen/3.3.0) | 🤷 |
 | [`spring`](https://rubygems.org/gems/spring) | `'~> 4.0.0'` | [Rubydoc](https://www.rubydoc.info/gems/spring/4.0.0) | 🤷 |
+| [`rails-erd`](https://rubygems.org/gems/rails-erd) | `'~> 1.6.0'` | [RubyDoc](https://rubydoc.info/github/voormedia/rails-erd/) | Generates `/docs/ERD.png`. (**E**ntity **R**elationship **D**iagram) |
+| [`simplecov`](https://rubygems.org/gems/simplecov) | `'~> 0.21.2'` | [GitHub repo](https://github.com/simplecov-ruby/simplecov) | Generates coverage reports (`/coverage/**/*`) |
+| [`simplecov_json_formatter`](https://rubygems.org/gems/simplecov_json_formatter) | `'~> 0.1.2'` | [GitHub repo](https://github.com/codeclimate-community/simplecov_json_formatter) | JSON formatter for `simplecov` |
 | [`tzinfo-data`](https://rubygems.org/gems/tzinfo-data) | `'~> 1.2021.5'` | [Rubydoc](https://www.rubydoc.info/gems/tzinfo-data/1.2021.5) | 🤷 |
 | [`jwt`](https://rubygems.org/gems/jwt) | `'~> 2.3'` | [Docs (github)](https://github.com/jwt/ruby-jwt/blob/master/README.md) | Create, sign, and validate Json Web Tokens |
 | [`rack-cors`](https://rubygems.org/gems/rack-cors) | `'~> 1.1.1'` | [Rubydoc](https://www.rubydoc.info/gems/rack-cors/1.1.1) | Something to do with CORS I think |
@@ -100,3 +103,8 @@ $ rm config/rsa/key.pub
 ## Useful Information
 #### Location image resolution
 https://github.com/TrailBuddies/api/blob/4b3b7d61ea59234f6688843b1b9618153614007b/app/models/hike_event.rb#L21-L22
+
+#### No Fixtures for Token Model?
+That's right. There are no fixtures for the Token model. No sample data is given because each token is generated with a unique passphrase. If I put a token generated with passphrase `foo` in the fixtures file, it will not be able to be decoded in another instance of the project running with a passphrase of `bar`.
+
+You cannot decode a JWT if you do not have the right passphrase
