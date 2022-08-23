@@ -58,6 +58,15 @@ class UserTest < ActiveSupport::TestCase
     assert_not_equal previous.key, current.key
   end
 
+  test 'should return a valid avatar url' do
+    avatar_url = @user_matievisthekat.avatar_url
+    uri = URI.parse(avatar_url)
+
+    assert uri.scheme == 'https'
+    assert uri.host == 'res.cloudinary.com'
+    assert uri.path.to_s.starts_with?('/dth4ew8m4/image/upload/')
+  end
+
   private
 
   def token_by_id(id)
