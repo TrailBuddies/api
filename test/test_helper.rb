@@ -15,4 +15,18 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+
+  setup do
+    @user_matievisthekat = users(:matievisthekat)
+    @user_test = users(:test)
+
+    # initialize tokens
+    @user_matievisthekat.generate_token(true)
+    @user_test.generate_token(true)
+
+    # initialize confirm emails keys
+    @user_matievisthekat.create_confirm_email_key
+    @user_test.create_confirm_email_key
+  end
 end
