@@ -43,15 +43,15 @@ class User < ApplicationRecord
   def create_confirm_email_key
     new_key = Base64.urlsafe_encode64(SecureRandom.hex(30))
 
-    if self.confirm_email_key.nil? || self.confirm_email_key.frozen?
-      self.confirm_email_key = ConfirmEmailKey.create(key: new_key, user_id: self.id, expires_in_s: 2.days.to_i)
-    else
-      self.confirm_email_key.key = new_key
+    unless self.confirm_email_key.nil?
+      self.confirm_email_key.destroy
     end
-
+    self.confirm_email_key = ConfirmEmailKey.create(key: new_key, user_id: self.id, expires_in_s: 2.days.to_i)
     self.confirm_email_key.save
 
     NotificationsMailer.confirm_email(self).deliver_later
+
+    self.confirm_email_key
   end
 
   def avatar_url
