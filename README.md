@@ -20,11 +20,25 @@
 
 <div align="center">
   
-  [![CI](https://github.com/TrailBuddies/api/actions/workflows/ci.yml/badge.svg)](https://github.com/TrailBuddies/api/actions/workflows/ci.yml)
-  [![Docs](https://github.com/TrailBuddies/api/actions/workflows/docs.yml/badge.svg)](https://github.com/TrailBuddies/api/actions/workflows/docs.yml)
+  ![Maintenance](https://img.shields.io/maintenance/yes/2022)
+  ![Website](https://img.shields.io/website?url=https%3A%2F%2Ftrailbuddies.club)
+  ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/TrailBuddies/api)
+  ![GitHub last commit](https://img.shields.io/github/last-commit/TrailBuddies/api)
+  ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/TrailBuddies/api/CI?label=CI)
+  ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/TrailBuddies/api/Docs?label=Docs)
   
-  [![Maintainability](https://api.codeclimate.com/v1/badges/18472595c433d05014c4/maintainability)](https://codeclimate.com/github/TrailBuddies/api/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/18472595c433d05014c4/test_coverage)](https://codeclimate.com/github/TrailBuddies/api/test_coverage)
+  ![GitHub pull requests](https://img.shields.io/github/issues-pr/TrailBuddies/api)
+  ![GitHub issues](https://img.shields.io/github/issues/TrailBuddies/api)
+  ![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/TrailBuddies/api)
+  ![Code Climate coverage](https://img.shields.io/codeclimate/coverage/TrailBuddies/api?label=test%20coverage)
+  ![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/TrailBuddies/api)
+  
+  ![GitHub top language](https://img.shields.io/github/languages/top/TrailBuddies/api)
+  ![GitHub language count](https://img.shields.io/github/languages/count/TrailBuddies/api)
+  ![GitHub](https://img.shields.io/github/license/TrailBuddies/api)
+  
+  ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/TrailBuddies/api)
+  ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/TrailBuddies/api)
   
 </div>
 
