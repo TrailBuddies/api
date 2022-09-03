@@ -27,14 +27,10 @@
   ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/TrailBuddies/api/CI?label=CI)
   ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/TrailBuddies/api/Docs?label=Docs)
   
-  ![GitHub pull requests](https://img.shields.io/github/issues-pr/TrailBuddies/api)
-  ![GitHub issues](https://img.shields.io/github/issues/TrailBuddies/api)
   ![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/TrailBuddies/api)
   ![Code Climate coverage](https://img.shields.io/codeclimate/coverage/TrailBuddies/api?label=test%20coverage)
   ![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/TrailBuddies/api)
   
-  ![GitHub top language](https://img.shields.io/github/languages/top/TrailBuddies/api)
-  ![GitHub language count](https://img.shields.io/github/languages/count/TrailBuddies/api)
   ![GitHub](https://img.shields.io/github/license/TrailBuddies/api)
   
   ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/TrailBuddies/api)
