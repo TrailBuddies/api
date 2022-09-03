@@ -16,5 +16,8 @@ test:
   database: api_test
 
 production:
-  adapter: postgresql
-  url: <%= ENV['PROD_DATABASE_URL'] %>
+  <<: *local
+  username: <%= ENV['PROD_API_DB_USER'] %>
+  password: <%= ENV.fetch('PROD_API_DB_PASSWORD') { '' } %>
+  host: <%= ENV.fetch('PROD_API_DB_HOST') { 'localhost' } %>
+  port: 5432
