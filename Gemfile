@@ -27,6 +27,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+# Allows the use of assets and stuff
+gem 'sprockets-rails', '~> 3.4.2', :require => 'sprockets/railtie'
+
 group :development, :test do
   # gem 'rswag', '~> 2.5'
 
