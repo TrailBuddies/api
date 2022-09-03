@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:experimental
-ARG RUBY_VERSION=2.7.3
+ARG RUBY_VERSION=3.1.2
 ARG VARIANT=jemalloc-slim
 FROM quay.io/evl.ms/fullstaq-ruby:${RUBY_VERSION}-${VARIANT} as base
 
@@ -33,7 +33,7 @@ RUN volta install node@${NODE_VERSION} && volta install yarn
 
 FROM base as build_deps
 
-ARG DEV_PACKAGES="git build-essential libpq-dev wget vim curl gzip xz-utils libsqlite3-dev"
+ARG DEV_PACKAGES="git build-essential libpq-dev wget vim curl gzip xz-utils libsqlite3-dev libmagickwand-dev"
 ENV DEV_PACKAGES ${DEV_PACKAGES}
 
 RUN --mount=type=cache,id=dev-apt-cache,sharing=locked,target=/var/cache/apt \
@@ -64,7 +64,7 @@ RUN if [ -f "yarn.lock" ]; then \
 
 FROM base
 
-ARG PROD_PACKAGES="postgresql-client file vim curl gzip libsqlite3-0"
+ARG PROD_PACKAGES="postgresql-client file vim curl gzip libsqlite3-0 libmagickwand-dev"
 ENV PROD_PACKAGES=${PROD_PACKAGES}
 
 RUN --mount=type=cache,id=prod-apt-cache,sharing=locked,target=/var/cache/apt \
