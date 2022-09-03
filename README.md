@@ -77,20 +77,18 @@
 | Name | Description | Required | Default |
 | :-- | :-- | :-: | :-: |
 | `PASSPHRASE` | A passphrase for the RSA keypair | ❌ | nil |
-| `DEV_API_DB_USER` | Development PostgreSQL user that can access all necessary databases | ✔️ | nil |
+| `DEV_API_DB_USER` | Development PostgreSQL user that can access all necessary databases | ✓️ | nil |
 | `DEV_API_DB_PASSWORD` | The development password for the above user | ❌ | nil |
 | `DEV_API_DB_HOST` | The development PostgreSQL daemon host address | ❌ | `localhost:5432` |
-| `PROD_API_DB_USER` | Production PostgreSQL user that can access all necessary databases | ✔️ | nil |
-| `PROD_API_DB_PASSWORD` | The production password for the above user | ❌ | nil |
-| `PROD_API_DB_HOST` | The production PostgreSQL daemon host address | ❌ | `localhost:5432` |
-| `EMAIL` | An email address for the seed user (created with rails `db:seed`) | ✔️ | nil |
-| `PASSWORD` | An unhashed (plain text) password for the seed user (above) | ✔️ | nil |
-| `CLOUDINARY_SECRET` | A [Cloudinary API secret](https://cloudinary.com/documentation/cloudinary_glossary#api_key_and_secret). Will be used to store images | ✔️ | nil |
-| `TOMTOM_API_KEY` | A [TomTom maps](https://developer.tomtom.com/map-display-api/documentation/product-information/introduction) API key. Will be used te generate map images | ✔️ | nil |
+| `PROD_DATABASE_URL` | Production PostgreSQL connection URL | ✓ | `postgres://user:pass@domain.com:5432/dbname` |
+| `EMAIL` | An email address for the seed user (created with rails `db:seed`) | ✓️ | nil |
+| `PASSWORD` | An unhashed (plain text) password for the seed user (above) | ✓️ | nil |
+| `CLOUDINARY_SECRET` | A [Cloudinary API secret](https://cloudinary.com/documentation/cloudinary_glossary#api_key_and_secret). Will be used to store images | ✓️ | nil |
+| `TOMTOM_API_KEY` | A [TomTom maps](https://developer.tomtom.com/map-display-api/documentation/product-information/introduction) API key. Will be used te generate map images | ✓️ | nil |
 | `RSA_PUBLIC_KEY` | A RSA public key used to decode JWTs | ❌ | Contents of `config/rsa/public.pem` |
 | `RSA_PRIVATE_KEY` | A RSA private key used to sign JWTs | ❌ | Contents of `config/rsa/private.pem` |
-| `SMTP_USERNAME` | A valid Sendinblue SMTP login | ✔️ | nil |
-| `SMTP_PASSWORD` | A valid Sendinblue SMTP key | ✔️ | nil |
+| `SMTP_USERNAME` | A valid Sendinblue SMTP login | ✓️ | nil |
+| `SMTP_PASSWORD` | A valid Sendinblue SMTP key | ✓️ | nil |
 
 ### Git Ignored Files
 | File | Description |
@@ -110,9 +108,6 @@ $ ssh-keygen -f config/rsa/key.pub -e -m pem > config/rsa/public.pem
 $ rm config/rsa/key.pub
 ```
 ❗ These commands are saved in the `bin/keygen` file
-
-⚠️ Heroku: run `bin/keygen` locally and copy the keys into config (environment) variables on the Heroku dashboard
-
 
 ## Useful Information
 #### Location image resolution
