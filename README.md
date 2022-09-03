@@ -50,6 +50,7 @@
 | RBEnv | `rbenv 1.2.0` | [Installation guide](https://github.com/rbenv/rbenv#installation) |
 | Ruby | `ruby 3.1.0p0 (2021-12-25 revision fb4df44d16)` | Install via RBEnv |
 | PostgreSQL | `postgres (PostgreSQL) 13.4` | [Installation guide](https://www.postgresql.org/download/) |
+| ImageMagick | `ImageMagick 7.1.0-45 Q16-HDRI x86_64 20319` | [Installation guide](https://imagemagick.org/script/download.php) |
 | TomTom API | `1` | n/a |
 | Cloudinary API | `n/a` | n/a |
 
@@ -80,9 +81,12 @@
 | Name | Description | Required | Default |
 | :-- | :-- | :-: | :-: |
 | `PASSPHRASE` | A passphrase for the RSA keypair | ❌ | nil |
-| `API_DB_USER` | PostgreSQL user that can access all necessary databases | ✔️ | nil |
-| `API_DB_PASSWORD` | The password for the above user | ❌ | nil |
-| `API_DB_HOST` | The PostgreSQL daemon host address | ❌ | `localhost:5432` |
+| `DEV_API_DB_USER` | Development PostgreSQL user that can access all necessary databases | ✔️ | nil |
+| `DEV_API_DB_PASSWORD` | The development password for the above user | ❌ | nil |
+| `DEV_API_DB_HOST` | The development PostgreSQL daemon host address | ❌ | `localhost:5432` |
+| `PROD_API_DB_USER` | Production PostgreSQL user that can access all necessary databases | ✔️ | nil |
+| `PROD_API_DB_PASSWORD` | The production password for the above user | ❌ | nil |
+| `PROD_API_DB_HOST` | The production PostgreSQL daemon host address | ❌ | `localhost:5432` |
 | `EMAIL` | An email address for the seed user (created with rails `db:seed`) | ✔️ | nil |
 | `PASSWORD` | An unhashed (plain text) password for the seed user (above) | ✔️ | nil |
 | `CLOUDINARY_SECRET` | A [Cloudinary API secret](https://cloudinary.com/documentation/cloudinary_glossary#api_key_and_secret). Will be used to store images | ✔️ | nil |
