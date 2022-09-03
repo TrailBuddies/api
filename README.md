@@ -79,10 +79,8 @@
 | `PASSPHRASE` | A passphrase for the RSA keypair | ❌ | nil |
 | `DEV_API_DB_USER` | Development PostgreSQL user that can access all necessary databases | ✓️ | nil |
 | `DEV_API_DB_PASSWORD` | The development password for the above user | ❌ | nil |
-| `DEV_API_DB_HOST` | The development PostgreSQL daemon host address | ❌ | `localhost` |
-| `PROD_API_DB_USER` | Development PostgreSQL user that can access all necessary databases | ✓️ | nil |
-| `PROD_API_DB_PASSWORD` | The development password for the above user | ❌ | nil |
-| `PROD_API_DB_HOST` | The development PostgreSQL daemon host address | ❌ | `localhost` |
+| `DEV_API_DB_HOST` | The development PostgreSQL daemon host address | ❌ | `localhost:5432` |
+| `DATABASE_URL` | Production PostgreSQL connection URL | ✓ | nil |
 | `EMAIL` | An email address for the seed user (created with rails `db:seed`) | ✓️ | nil |
 | `PASSWORD` | An unhashed (plain text) password for the seed user (above) | ✓️ | nil |
 | `CLOUDINARY_SECRET` | A [Cloudinary API secret](https://cloudinary.com/documentation/cloudinary_glossary#api_key_and_secret). Will be used to store images | ✓️ | nil |

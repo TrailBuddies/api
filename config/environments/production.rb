@@ -114,4 +114,24 @@ Rails.application.configure do
 
   Rails.application.config.assets.precompile = []
 
+
+  # ActionMailer
+  # # same as development for now
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.default_options = {from: 'robot@trailbuddies.club'}
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address        => ENV.fetch('SMTP_HOST', 'smtp-relay.sendinblue.com'),
+    :port           => ENV.fetch('SMTP_PORT', '587'),
+    :authentication => :plain,
+    :user_name      => ENV['SMTP_USERNAME'], #See: https://account.sendinblue.com/advanced/api
+    :password       => ENV['SMTP_PASSWORD'], #See: https://account.sendinblue.com/advanced/api
+    :enable_starttls_auto => true
+  }
+
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.perform_caching = false
 end
