@@ -83,6 +83,7 @@
 | `PROD_API_DB_USER` | Production PostgreSQL user that can access all necessary databases | ✓️ | nil |
 | `PROD_API_DB_PASSWORD` | The production password for the above user | ❌ | nil |
 | `PROD_API_DB_HOST` | The production PostgreSQL daemon host address | ❌ | `localhost` |
+| `PROD_API_DB_PORT` | Production PostgreSQL connection port | ❌
 | `EMAIL` | An email address for the seed user (created with rails `db:seed`) | ✓️ | nil |
 | `PASSWORD` | An unhashed (plain text) password for the seed user (above) | ✓️ | nil |
 | `CLOUDINARY_SECRET` | A [Cloudinary API secret](https://cloudinary.com/documentation/cloudinary_glossary#api_key_and_secret). Will be used to store images | ✓️ | nil |
