@@ -17,4 +17,10 @@ test:
 
 production:
   adapter: postgresql
-  url: <% ENV['DATABASE_URL'] %>
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['PROD_API_DB_USER'] %>
+  password: <%= ENV.fetch('PROD_API_DB_PASSWORD') { '' } %>
+  host: <%= ENV.fetch('PROD_API_DB_HOST') { 'localhost' } %>
+  port: <% ENV.fetch('PROD_API_DB_PORT') { '5432' } %>
+  database: api_production
