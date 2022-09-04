@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:13
+        image: postgres:14
         env:
           POSTGRES_USER: ${{ env.API_DB_USER }}
           POSTGRES_DB: ${{ env.API_DB_USER }}
