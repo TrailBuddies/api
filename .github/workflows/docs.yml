@@ -39,6 +39,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+          ruby-version: 3.1.2
 
       - name: Setup Rails Database
         run: RAILS_ENV='test' bin/keygen && bin/rails db:setup
