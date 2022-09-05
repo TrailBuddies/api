@@ -36,8 +36,5 @@ RUN gem install -N bundler -v 2.3.9
 RUN bundle install && \
     rm -rf vendor/bundle/ruby/*/cache
 
-# Setup database
-RUN bin/rails db:setup
-
 # Execute..
 CMD bin/rails server
