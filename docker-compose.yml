@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: ${PROD_API_DB_PASSWORD}
     ports:
       - "5433:5433"
-  rails:
+  api:
     build: .
     volumes:
       - .:/app
