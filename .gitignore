@@ -31,4 +31,4 @@
 /coverage
 
 # Ignore local environment variables
-.env.local.yml
+.env
