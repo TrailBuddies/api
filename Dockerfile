@@ -11,6 +11,7 @@ ENV SECRET_KEY_BASE 1
 
 # Change work directory
 WORKDIR /app
+#COPY . .
 
 # Install Nodejs
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
@@ -30,11 +31,13 @@ RUN apt-get update -qq -y && \
 
 
 # Install Bundler
-RUN gem install -N bundler -v 2.3.9
+RUN gem install -N bundler -v 2.3.6
 
 # Install gems from Gemfile
+COPY Gemfile* ./
 RUN bundle install && \
     rm -rf vendor/bundle/ruby/*/cache
 
 # Execute..
-CMD bin/rails server
+EXPOSE ${PORT}
+CMD ["bin/rails", "server", "-b", "0.0.0.0"]

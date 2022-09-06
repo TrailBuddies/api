@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: ${PROD_API_DB_USER}
       POSTGRES_PASSWORD: ${PROD_API_DB_PASSWORD}
     ports:
-      - "5433:5433"
+      - ${PROD_API_DB_PORT}:${PROD_API_DB_PORT}
   api:
     build: .
     volumes:
