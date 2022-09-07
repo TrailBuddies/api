@@ -14,8 +14,8 @@ WORKDIR /app
 #COPY . .
 
 # Install Nodejs
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
-    apt-get install -y nodejs
+#RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
+#    apt-get install -y nodejs
 
 # Install Yarn package manager
 #RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null && \
@@ -24,7 +24,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
 #    apt-get install yarn
 
 # Install needed system packages
-ARG PACKAGES="postgresql-client libmagickwand-dev"
+ARG PACKAGES="postgresql-client nodejs libmagickwand-dev"
 RUN apt-get update -qq -y && \
     apt-get install --no-install-recommends -y ${PACKAGES} && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
@@ -35,9 +35,8 @@ RUN gem install -N bundler -v 2.3.6
 
 # Install gems from Gemfile
 COPY Gemfile* ./
-RUN bundle install && \
-    rm -rf vendor/bundle/ruby/*/cache
+RUN bundle install
 
 # Execute..
 EXPOSE ${PORT}
-CMD ["bin/rails", "server", "-b", "0.0.0.0"]
+CMD ["bin/rails", "server"]
