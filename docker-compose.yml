@@ -9,10 +9,9 @@ services:
     environment:
       POSTGRES_USER: ${PROD_API_DB_USER}
       POSTGRES_PASSWORD: ${PROD_API_DB_PASSWORD}
-    ports:
-      - ${PROD_API_DB_PORT}:${PROD_API_DB_PORT}
   api:
     build: .
+    command: "bin/rails server -p 6660"
     volumes:
       - .:/app
     ports:
