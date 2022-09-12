@@ -89,8 +89,6 @@
 | `PASSWORD` | An unhashed (plain text) password for the seed user (above) | ✅ | nil |
 | `CLOUDINARY_SECRET` | A [Cloudinary API secret](https://cloudinary.com/documentation/cloudinary_glossary#api_key_and_secret). Will be used to store images | ✅ | nil |
 | `TOMTOM_API_KEY` | A [TomTom maps](https://developer.tomtom.com/map-display-api/documentation/product-information/introduction) API key. Will be used te generate map images | ✅ | nil |
-| `RSA_PUBLIC_KEY` | A RSA public key used to decode JWTs | ❌ | Contents of `config/rsa/public.pem` |
-| `RSA_PRIVATE_KEY` | A RSA private key used to sign JWTs | ❌ | Contents of `config/rsa/private.pem` |
 | `SMTP_USERNAME` | A valid Sendinblue SMTP login | ✅ | nil |
 | `SMTP_PASSWORD` | A valid Sendinblue SMTP key | ✅ | nil |
 
