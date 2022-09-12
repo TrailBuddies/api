@@ -27,7 +27,16 @@ module Api
     config.before_configuration do
       env_file = File.join(Rails.root, '.env')
       if File.exists?(env_file)
+        env = File.open(env_file)
+        env.each_line.each do |line|
+          unless line.empty?
+            parts = line.split('=')
+            name = parts[0]
+            value = parts.drop(1).join('=').gsub("'", "")
 
+            ENV[name] = value
+          end
+        end
       end
     end
 
