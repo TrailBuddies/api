@@ -11,7 +11,7 @@ ENV SECRET_KEY_BASE 1
 
 # Change work directory
 WORKDIR /app
-#COPY . .
+COPY config/rsa/*.pem ./config/rsa/
 
 # Install Nodejs
 #RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
