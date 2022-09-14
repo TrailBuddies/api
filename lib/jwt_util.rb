@@ -8,7 +8,7 @@ module JWTUtil
         iat: Time.now.to_i,
         sub: user.id + '.' + Time.now.to_s + '.' + SecureRandom.hex(5)
       },
-      OpenSSL::PKey::RSA.new(RSAUtil::Keys::priv, ENV['PASSPHRASE']),
+      OpenSSL::PKey::RSA.new(RSAUtil::Keys::priv, RSAUtil::Keys::passphrase),
       'RS256'
     )
   end
@@ -17,7 +17,7 @@ module JWTUtil
     begin
       JWT.decode(
         token,
-        OpenSSL::PKey::RSA.new(RSAUtil::Keys::pub, ENV['PASSPHRASE']),
+        OpenSSL::PKey::RSA.new(RSAUtil::Keys::pub, RSAUtil::Keys::passphrase),
         true,
         { algorithm: 'RS256' }
       )

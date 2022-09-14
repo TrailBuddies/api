@@ -76,7 +76,6 @@
 ### Environment Variables
 | Name | Description | Required | Default |
 | :-- | :-- | :-: | :-: |
-| `PASSPHRASE` | A passphrase for the RSA keypair | ❌ | nil |
 | `DEV_API_DB_USER` | Development PostgreSQL user that can access all necessary databases | ✅ | nil |
 | `DEV_API_DB_PASSWORD` | The development password for the above user | ❌ | nil |
 | `DEV_API_DB_HOST` | The development PostgreSQL daemon host address | ❌ | `localhost` |
