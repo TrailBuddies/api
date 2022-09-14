@@ -16,3 +16,6 @@ mv config/rsa/key config/rsa/private.pem
 ssh-keygen -f config/rsa/key.pub -e -m pem > config/rsa/public.pem
 
 rm config/rsa/key.pub
+
+echo $PASSPHRASE > config/rsa/passphrase.txt
+perl -pi -e 'chomp if eof' config/rsa/passphrase.txt

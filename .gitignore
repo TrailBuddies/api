@@ -27,6 +27,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 *.pem
+/config/rsa/passphrase.txt
 
 # Ignore code coverage report
 /coverage
