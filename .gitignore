@@ -34,3 +34,5 @@
 
 # Ignore local environment variables
 .env*
+!.env.test
+!.env.development
