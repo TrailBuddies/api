@@ -60,3 +60,5 @@ gem 'cloudinary', '~> 1.22'
 gem 'httparty', '~> 0.20'
 
 gem 'active_storage_validations', '~> 0.9', '>= 0.9.8'
+
+gem 'dotenv-rails', '~> 2.8.1'
