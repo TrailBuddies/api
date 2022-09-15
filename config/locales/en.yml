@@ -42,4 +42,4 @@ en:
       subject: 'Remember to confirm your email for TrailBuddies!'
   mailer:
     default:
-      footer: 'This email was intended for %{addresses}'
+      footer: 'This email was intended for %{address}'

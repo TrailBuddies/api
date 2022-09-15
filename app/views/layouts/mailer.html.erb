@@ -13,7 +13,7 @@
     </main>
 
     <footer style="text-align:center; width:40%; margin:auto; border-top:solid 1px black; margin-top:60px; padding-top: 20px">
-      <span style="font-size:0.7rem"><%= t('mailer.default.footer', addresses: @_message.to.join(',')) %></span>
+      <span style="font-size:0.7rem"><%= t('mailer.default.footer', address: @_message.to) %></span>
     </footer>
   </body>
 </html>
