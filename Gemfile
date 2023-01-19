@@ -6,7 +6,7 @@ ruby '3.1.2'
 gem 'net-smtp', '~> 0.3.1', require: false
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 7.0.4'
+gem 'rails', '~> 7.0.4', '>= 7.0.4.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
@@ -41,7 +41,7 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 4.0.0'
-  gem 'rails-erd', '~> 1.6.0'
+  gem 'rails-erd', '~> 1.6.1'
 end
 
 group :test do
