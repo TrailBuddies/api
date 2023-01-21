@@ -24,8 +24,8 @@
   ![Website](https://img.shields.io/website?url=https%3A%2F%2Ftrailbuddies.club)
   ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/TrailBuddies/api)
   ![GitHub last commit](https://img.shields.io/github/last-commit/TrailBuddies/api)
-  ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/TrailBuddies/api/CI?label=CI)
-  ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/TrailBuddies/api/Docs?label=Docs)
+  ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/TrailBuddies/api/ci.yml?label=CI&branch=master)
+  ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/TrailBuddies/api/docs.yml?label=Docs&branch=master)
   
   ![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/TrailBuddies/api)
   ![Code Climate coverage](https://img.shields.io/codeclimate/coverage/TrailBuddies/api?label=test%20coverage)
