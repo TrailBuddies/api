@@ -59,6 +59,6 @@ gem 'rmagick', '~> 4.2.4'
 gem 'cloudinary', '~> 1.22'
 gem 'httparty', '~> 0.21', '>= 0.21.0'
 
-gem 'active_storage_validations', '~> 1.0', '>= 1.0.0'
+gem 'active_storage_validations', '~> 1.1', '>= 1.1.0'
 
 gem 'dotenv-rails', '~> 2.8.1'
