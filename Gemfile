@@ -28,7 +28,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # gem 'rack-cors'
 
 # Allows the use of assets and stuff
-gem 'sprockets-rails', '~> 3.4.2', :require => 'sprockets/railtie'
+gem 'sprockets-rails', '~> 3.5.0', :require => 'sprockets/railtie'
 
 group :development, :test do
   # gem 'rswag', '~> 2.5'
