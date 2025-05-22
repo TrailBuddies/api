@@ -53,7 +53,7 @@ end
 gem 'tzinfo-data', '~> 1.2021.5', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'jwt', '~> 2.3'
-gem 'rack-cors', '~> 1.1.1'
+gem 'rack-cors', '~> 3.0.0'
 
 gem 'rmagick', '~> 4.2.4'
 gem 'cloudinary', '~> 1.22'
