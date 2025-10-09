@@ -6,7 +6,7 @@ ruby '3.1.2'
 gem 'net-smtp', '~> 0.3.1', require: false
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 7.0.5', '>= 7.0.5.1'
+gem 'rails', '~> 7.0.6'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
@@ -28,7 +28,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # gem 'rack-cors'
 
 # Allows the use of assets and stuff
-gem 'sprockets-rails', '~> 3.4.2', :require => 'sprockets/railtie'
+gem 'sprockets-rails', '~> 3.5.0', :require => 'sprockets/railtie'
 
 group :development, :test do
   # gem 'rswag', '~> 2.5'
@@ -53,12 +53,12 @@ end
 gem 'tzinfo-data', '~> 1.2021.5', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'jwt', '~> 2.3'
-gem 'rack-cors', '~> 1.1.1'
+gem 'rack-cors', '~> 2.0.0'
 
 gem 'rmagick', '~> 4.2.4'
 gem 'cloudinary', '~> 1.22'
 gem 'httparty', '~> 0.21', '>= 0.21.0'
 
-gem 'active_storage_validations', '~> 1.0', '>= 1.0.0'
+gem 'active_storage_validations', '~> 1.1', '>= 1.1.0'
 
-gem 'dotenv-rails', '~> 2.8.1'
+gem 'dotenv-rails', '~> 3.0.0'
