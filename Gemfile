@@ -57,7 +57,7 @@ gem 'rack-cors', '~> 1.1.1'
 
 gem 'rmagick', '~> 4.2.4'
 gem 'cloudinary', '~> 1.22'
-gem 'httparty', '~> 0.21', '>= 0.21.0'
+gem 'httparty', '~> 0.24', '>= 0.24.0'
 
 gem 'active_storage_validations', '~> 1.0', '>= 1.0.0'
 
